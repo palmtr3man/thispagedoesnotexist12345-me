@@ -5,116 +5,250 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Developer Tools Portal | thispagedoesnotexist12345.me</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Courier New', monospace;
-      background: #000000;
-      color: #00d4ff;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;700&display=swap');
+    :root {
+      --cyan: #00d4ff; --cyan-dim: rgba(0,212,255,0.15); --cyan-glow: rgba(0,212,255,0.4);
+      --black: #000000; --surface: rgba(0,10,15,0.97); --border: rgba(0,212,255,0.25);
+      --text-muted: rgba(0,212,255,0.5); --white: #e8f8ff; --red: #ff4d4d; --green: #00ff9d;
     }
-    .container {
-      max-width: 800px;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.95);
-      border: 2px solid #00d4ff;
-      border-radius: 10px;
-      padding: 40px;
-      box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
-    }
-    .terminal-header {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-    .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
-    .dot-red { background: #ff5f56; }
-    .dot-yellow { background: #ffbd2e; }
-    .dot-green { background: #27c93f; }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-      color: #00d4ff;
-      text-shadow: 0 0 10px #00d4ff;
-    }
-    .subtitle {
-      color: rgba(255,255,255,0.6);
-      font-size: 1.2em;
-      margin-bottom: 30px;
-    }
-    .features { margin: 30px 0; }
-    .feature {
-      margin: 15px 0;
-      padding: 15px;
-      background: rgba(0, 212, 255, 0.05);
-      border-left: 3px solid #00d4ff;
-      transition: background 0.3s ease;
-    }
-    .feature:hover { background: rgba(0, 212, 255, 0.12); }
-    .feature h3 { color: #00d4ff; margin-bottom: 5px; }
-    .feature p { color: #aaaaaa; line-height: 1.6; }
-    .cta-button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 15px 40px;
-      background: #00d4ff;
-      color: #000000;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
-      font-family: 'Courier New', monospace;
-      transition: all 0.3s;
-    }
-    .cta-button:hover {
-      background: #ffffff;
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
-      transform: translateY(-2px);
-    }
-    .coming-soon { color: #ff6b6b; font-size: 0.9em; margin-top: 20px; }
-    .footer {
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(0, 212, 255, 0.3);
-      text-align: center;
-      color: #555;
-      font-size: 0.9em;
-    }
-    .footer a { color: #00d4ff; text-decoration: none; }
-    .footer a:hover { text-decoration: underline; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Share Tech Mono',monospace; background:var(--black); color:var(--cyan); min-height:100vh; display:flex; align-items:flex-start; justify-content:center; padding:40px 20px 60px; position:relative; overflow-x:hidden; }
+    body::before { content:''; position:fixed; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,212,255,0.015) 2px,rgba(0,212,255,0.015) 4px); pointer-events:none; z-index:100; }
+    body::after { content:''; position:fixed; inset:0; background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; z-index:0; }
+    .container { max-width:760px; width:100%; position:relative; z-index:1; }
+    .terminal { background:var(--surface); border:1px solid var(--border); border-radius:8px; box-shadow:0 0 0 1px rgba(0,212,255,0.08),0 0 40px rgba(0,212,255,0.12),0 0 80px rgba(0,212,255,0.06),inset 0 1px 0 rgba(0,212,255,0.1); overflow:hidden; animation:terminalIn 0.6s ease both; }
+    @keyframes terminalIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    .terminal-bar { display:flex; align-items:center; gap:8px; padding:12px 16px; background:rgba(0,212,255,0.05); border-bottom:1px solid var(--border); }
+    .dot { width:11px; height:11px; border-radius:50%; }
+    .dot-red{background:#ff5f56;box-shadow:0 0 6px #ff5f5680} .dot-yellow{background:#ffbd2e;box-shadow:0 0 6px #ffbd2e80} .dot-green{background:#27c93f;box-shadow:0 0 6px #27c93f80}
+    .terminal-title { margin-left:auto; font-size:11px; color:var(--text-muted); letter-spacing:0.1em; }
+    .terminal-body { padding:36px 40px; }
+    .header { margin-bottom:32px; }
+    .prompt { font-size:11px; color:var(--text-muted); letter-spacing:0.15em; margin-bottom:8px; }
+    h1 { font-family:'Exo 2',sans-serif; font-size:clamp(1.8em,4vw,2.6em); font-weight:700; color:var(--cyan); text-shadow:0 0 20px var(--cyan-glow),0 0 40px rgba(0,212,255,0.2); letter-spacing:0.04em; line-height:1.1; margin-bottom:10px; }
+    .subtitle { font-size:0.95em; color:rgba(232,248,255,0.55); line-height:1.5; }
+    .status-bar { display:flex; align-items:center; gap:20px; padding:10px 14px; background:rgba(0,212,255,0.04); border:1px solid var(--border); border-radius:4px; margin-bottom:28px; font-size:11px; flex-wrap:wrap; }
+    .status-item { display:flex; align-items:center; gap:6px; color:var(--text-muted); }
+    .status-dot { width:6px; height:6px; border-radius:50%; background:var(--green); box-shadow:0 0 6px var(--green); animation:pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .status-item.active{color:var(--green)} .status-item.warn{color:#ffbd2e}
+    .tools { margin-bottom:36px; }
+    .section-label { font-size:10px; letter-spacing:0.2em; color:var(--text-muted); text-transform:uppercase; margin-bottom:14px; }
+    .tool-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; }
+    .tool-card { padding:16px; background:var(--cyan-dim); border:1px solid var(--border); border-radius:4px; transition:all 0.2s ease; cursor:default; }
+    .tool-card:hover { background:rgba(0,212,255,0.1); border-color:rgba(0,212,255,0.5); box-shadow:0 0 16px rgba(0,212,255,0.15); transform:translateY(-1px); }
+    .tool-name { font-size:0.9em; color:var(--cyan); margin-bottom:5px; }
+    .tool-desc { font-size:0.78em; color:rgba(232,248,255,0.45); line-height:1.5; }
+    .tool-badge { display:inline-block; font-size:9px; letter-spacing:0.1em; padding:2px 7px; border-radius:2px; margin-top:8px; background:rgba(0,212,255,0.1); border:1px solid rgba(0,212,255,0.3); color:var(--text-muted); }
+    .tool-badge.beta { background:rgba(255,189,46,0.1); border-color:rgba(255,189,46,0.3); color:#ffbd2e; }
+    .divider { display:flex; align-items:center; gap:12px; margin:28px 0; color:var(--text-muted); font-size:11px; letter-spacing:0.1em; }
+    .divider::before,.divider::after { content:''; flex:1; height:1px; background:var(--border); }
+    .beta-header { margin-bottom:20px; }
+    .beta-headline { font-family:'Exo 2',sans-serif; font-size:1.25em; font-weight:600; color:var(--white); margin-bottom:8px; }
+    .beta-subtext { font-size:0.82em; color:rgba(232,248,255,0.5); line-height:1.6; }
+    .perks { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:8px; margin-bottom:24px; }
+    .perk { display:flex; align-items:flex-start; gap:8px; padding:12px; background:rgba(0,255,157,0.04); border:1px solid rgba(0,255,157,0.12); border-radius:4px; font-size:0.78em; color:rgba(232,248,255,0.6); line-height:1.4; }
+    .perk-icon { color:var(--green); flex-shrink:0; }
+    #beta-form { display:flex; flex-direction:column; gap:14px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .field { display:flex; flex-direction:column; gap:6px; }
+    label { font-size:10px; letter-spacing:0.15em; color:var(--text-muted); text-transform:uppercase; }
+    .field-wrap { position:relative; }
+    input,select,textarea { width:100%; background:rgba(0,0,0,0.6); border:1px solid var(--border); border-radius:3px; padding:10px 12px; font-family:'Share Tech Mono',monospace; font-size:0.85em; color:var(--white); outline:none; transition:border-color 0.2s,box-shadow 0.2s; appearance:none; }
+    input::placeholder,textarea::placeholder { color:rgba(232,248,255,0.2); }
+    input:focus,select:focus,textarea:focus { border-color:var(--cyan); box-shadow:0 0 0 2px rgba(0,212,255,0.1),0 0 12px rgba(0,212,255,0.1); }
+    input.error,select.error,textarea.error { border-color:var(--red); box-shadow:0 0 0 2px rgba(255,77,77,0.1); }
+    .error-msg { font-size:10px; color:var(--red); display:none; margin-top:3px; }
+    .field.has-error .error-msg { display:block; }
+    select option { background:#0a0a0a; color:var(--white); }
+    textarea { resize:vertical; min-height:80px; }
+    .check-field { display:flex; align-items:flex-start; gap:10px; cursor:pointer; }
+    .check-field input[type="checkbox"] { width:16px; height:16px; min-width:16px; padding:0; margin-top:1px; accent-color:var(--cyan); cursor:pointer; }
+    .check-label { font-size:0.78em; color:rgba(232,248,255,0.5); line-height:1.5; cursor:pointer; }
+    .check-label a { color:var(--cyan); text-decoration:none; }
+    .check-label a:hover { text-decoration:underline; }
+    .submit-wrap { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+    .btn-submit { display:inline-flex; align-items:center; gap:8px; padding:13px 32px; background:var(--cyan); color:#000; border:none; border-radius:3px; font-family:'Share Tech Mono',monospace; font-size:0.9em; font-weight:bold; letter-spacing:0.08em; cursor:pointer; transition:all 0.2s ease; position:relative; overflow:hidden; }
+    .btn-submit::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,0.15) 50%,transparent 60%); transform:translateX(-100%); transition:transform 0.4s ease; }
+    .btn-submit:hover { background:#fff; box-shadow:0 0 24px rgba(0,212,255,0.5); transform:translateY(-1px); }
+    .btn-submit:hover::after { transform:translateX(100%); }
+    .btn-submit:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+    .form-note { font-size:0.75em; color:rgba(232,248,255,0.3); line-height:1.5; }
+    #success-state { display:none; text-align:center; padding:32px 0; animation:fadeIn 0.5s ease both; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+    .success-icon { font-size:2.5em; margin-bottom:16px; display:block; }
+    .success-title { font-family:'Exo 2',sans-serif; font-size:1.4em; font-weight:700; color:var(--green); margin-bottom:8px; text-shadow:0 0 20px rgba(0,255,157,0.4); }
+    .success-sub { font-size:0.85em; color:rgba(232,248,255,0.5); line-height:1.6; max-width:420px; margin:0 auto 20px; }
+    .ticket { display:inline-block; padding:12px 24px; background:rgba(0,255,157,0.06); border:1px dashed rgba(0,255,157,0.3); border-radius:4px; font-size:0.78em; color:var(--green); letter-spacing:0.1em; margin-bottom:20px; }
+    .footer { margin-top:24px; padding-top:20px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:0.75em; color:rgba(0,212,255,0.3); }
+    .footer a { color:rgba(0,212,255,0.5); text-decoration:none; transition:color 0.2s; }
+    .footer a:hover { color:var(--cyan); }
+    .footer-links { display:flex; gap:16px; flex-wrap:wrap; }
+    @media (max-width:560px) { .terminal-body{padding:24px 20px} .form-row{grid-template-columns:1fr} h1{font-size:1.6em} .perks{grid-template-columns:1fr} }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="terminal-header">
-      <div class="terminal-dot dot-red"></div>
-      <div class="terminal-dot dot-yellow"></div>
-      <div class="terminal-dot dot-green"></div>
+<div class="container">
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="dot dot-red"></div>
+      <div class="dot dot-yellow"></div>
+      <div class="dot dot-green"></div>
+      <span class="terminal-title">thispagedoesnotexist12345.me — beta@v0.1</span>
     </div>
-    <h1>&gt; Developer Tools Portal</h1>
-    <p class="subtitle">// Building the next generation of developer utilities</p>
-    <div class="features">
-      <div class="feature">
-        <h3>&gt; Link Recovery Tool</h3>
-        <p>Advanced broken link detection and recovery system. Scan, analyze, and fix dead links across your entire web infrastructure.</p>
+    <div class="terminal-body">
+      <div class="header">
+        <div class="prompt">// thispagedoesnotexist12345.me</div>
+        <h1>&gt; Developer Tools Portal</h1>
+        <p class="subtitle">Building the next generation of developer utilities — and we need sharp testers to help us ship them right.</p>
       </div>
-      <div class="feature">
-        <h3>&gt; API Playground</h3>
-        <p>Interactive testing environment for REST APIs, GraphQL, and WebSocket connections. Real-time debugging and documentation.</p>
+      <div class="status-bar">
+        <div class="status-item active"><span class="status-dot"></span>BETA RECRUITMENT OPEN</div>
+        <div class="status-item warn">⚡ Q2 2026 LAUNCH</div>
+        <div class="status-item">🛠 3 TOOLS IN TESTING</div>
+        <div class="status-item">🎟 DISCOUNTED ACCESS</div>
       </div>
-      <div class="feature">
-        <h3>&gt; Tech Resources</h3>
-        <p>Curated collection of developer tools, libraries, frameworks, and educational content for modern web development.</p>
+      <div class="tools">
+        <div class="section-label">// tools in development — thispagedoesnotexist12345.tech</div>
+        <div class="tool-grid">
+          <div class="tool-card">
+            <div class="tool-name">&gt; Link Recovery Tool</div>
+            <div class="tool-desc">Broken link detection &amp; recovery. Scan, analyze, and fix dead links across your entire web infrastructure.</div>
+            <span class="tool-badge beta">BETA</span>
+          </div>
+          <div class="tool-card">
+            <div class="tool-name">&gt; API Playground</div>
+            <div class="tool-desc">Interactive testing for REST, GraphQL &amp; WebSocket. Real-time debugging and live documentation.</div>
+            <span class="tool-badge beta">BETA</span>
+          </div>
+          <div class="tool-card">
+            <div class="tool-name">&gt; Tech Resources</div>
+            <div class="tool-desc">Curated dev tools, libraries &amp; frameworks. Continuously updated for modern web development.</div>
+            <span class="tool-badge">ALPHA</span>
+          </div>
+        </div>
       </div>
-    </div>
-    <a href="#waitlist" class="cta-button">&gt; Join the Waitlist</a>
-    <p class="coming-soon">🚀 Launching Q2 2026 | Early access available for beta testers</p>
-    <div class="footer">
-      thispagedoesnotexist12345.me | Developer Tools Portal<br>
-      Repository: <a href="https://github.com/palmtr3man/thispagedoesnotexist12345-me">GitHub</a>
+      <div class="divider">── JOIN THE QA TEAM ──</div>
+      <div class="beta-header">
+        <div class="beta-headline">Get Early Access. Help Us Build It Right.</div>
+        <p class="beta-subtext">We're recruiting developers and QA engineers to test our tools before public launch. Beta testers get <strong style="color:var(--cyan)">6 months of discounted access</strong> and direct input into what we build next. No experience floor — if you use dev tools, we want your perspective.</p>
+      </div>
+      <div class="perks">
+        <div class="perk"><span class="perk-icon">✦</span><span>6 months discounted access to all .tech tools</span></div>
+        <div class="perk"><span class="perk-icon">✦</span><span>Direct line to the product team — your bugs matter</span></div>
+        <div class="perk"><span class="perk-icon">✦</span><span>Founding tester badge &amp; priority support tier</span></div>
+        <div class="perk"><span class="perk-icon">✦</span><span>Early access to new tools before public release</span></div>
+      </div>
+      <form id="beta-form" name="beta-waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="beta-waitlist">
+        <p style="display:none"><input name="bot-field"></p>
+        <div class="form-row">
+          <div class="field" id="field-name">
+            <label for="name">// Name</label>
+            <div class="field-wrap"><input type="text" id="name" name="name" placeholder="Jane Smith" autocomplete="name"></div>
+            <span class="error-msg">Name is required</span>
+          </div>
+          <div class="field" id="field-email">
+            <label for="email">// Email *</label>
+            <div class="field-wrap"><input type="email" id="email" name="email" placeholder="dev@example.com" autocomplete="email" required></div>
+            <span class="error-msg">Valid email required</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field" id="field-role">
+            <label for="role">// Role / Background *</label>
+            <select id="role" name="role" required>
+              <option value="" disabled selected>Select your focus...</option>
+              <option value="frontend">Frontend Developer</option>
+              <option value="backend">Backend Developer</option>
+              <option value="fullstack">Full Stack Developer</option>
+              <option value="qa">QA / SDET Engineer</option>
+              <option value="devops">DevOps / Platform Engineer</option>
+              <option value="other">Other / Hobbyist</option>
+            </select>
+            <span class="error-msg">Please select a role</span>
+          </div>
+          <div class="field" id="field-tool">
+            <label for="tool">// Which tool to test first? *</label>
+            <select id="tool" name="primary-tool" required>
+              <option value="" disabled selected>Pick a tool...</option>
+              <option value="link-recovery">Link Recovery Tool</option>
+              <option value="api-playground">API Playground</option>
+              <option value="tech-resources">Tech Resources</option>
+              <option value="all">All three — bring it on</option>
+            </select>
+            <span class="error-msg">Please pick a tool</span>
+          </div>
+        </div>
+        <div class="field" id="field-feedback">
+          <label for="feedback">// What would you improve? (optional)</label>
+          <textarea id="feedback" name="improvement-ideas" placeholder="What's broken in your current dev tooling? What gap are you most hoping we fill?..."></textarea>
+        </div>
+        <div class="check-field">
+          <input type="checkbox" id="agree" name="agree" required>
+          <label class="check-label" for="agree">I understand this is a beta program — bugs are expected. I agree to share feedback and won't redistribute unreleased features. (<a href="https://thispagedoesnotexist12345.com" target="_blank">Full terms at .com</a>)</label>
+        </div>
+        <div class="submit-wrap">
+          <button type="submit" class="btn-submit" id="submit-btn">&gt;_ REQUEST BETA ACCESS</button>
+          <span class="form-note">No spam. Beta invite sent within 48 hrs.<br>Unsubscribe anytime.</span>
+        </div>
+      </form>
+      <div id="success-state">
+        <span class="success-icon">⬡</span>
+        <div class="success-title">// ACCESS REQUEST LOGGED</div>
+        <p class="success-sub">You're in the queue. We'll review your application and send a beta invite to your email within 48 hours. Keep an eye on your inbox.</p>
+        <div class="ticket">BETA-TESTER-QUEUE · thispagedoesnotexist12345.tech · Q2 2026</div>
+        <p style="font-size:0.78em;color:rgba(232,248,255,0.3)">In the meantime → <a href="https://www.thispagedoesnotexist12345.com" style="color:var(--cyan)">explore the main platform</a></p>
+      </div>
+      <div class="footer">
+        <span>thispagedoesnotexist12345.me</span>
+        <div class="footer-links">
+          <a href="https://www.thispagedoesnotexist12345.com">.com</a>
+          <a href="https://thispagedoesnotexist12345.tech">.tech</a>
+          <a href="https://thispagedoesnotexist12345.info">.info</a>
+          <a href="https://newsletter.thispagedoesnotexist12345.us">.us</a>
+        </div>
+      </div>
     </div>
   </div>
+</div>
+<script>
+  const form=document.getElementById('beta-form');
+  const successState=document.getElementById('success-state');
+  const submitBtn=document.getElementById('submit-btn');
+  function validateField(id,testFn){
+    const field=document.getElementById('field-'+id);
+    const input=document.getElementById(id);
+    if(!field||!input)return true;
+    const valid=testFn(input.value.trim());
+    field.classList.toggle('has-error',!valid);
+    input.classList.toggle('error',!valid);
+    return valid;
+  }
+  function isValidEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+  document.getElementById('email').addEventListener('blur',()=>validateField('email',isValidEmail));
+  document.getElementById('role').addEventListener('change',()=>validateField('role',v=>v!==''));
+  document.getElementById('tool').addEventListener('change',()=>validateField('tool',v=>v!==''));
+  form.addEventListener('submit',async(e)=>{
+    e.preventDefault();
+    const validEmail=validateField('email',isValidEmail);
+    const validRole=validateField('role',v=>v!=='');
+    const validTool=validateField('tool',v=>v!=='');
+    const agreed=document.getElementById('agree').checked;
+    if(!validEmail||!validRole||!validTool||!agreed)return;
+    submitBtn.disabled=true;
+    submitBtn.textContent='>_ SENDING...';
+    try{
+      const data=new FormData(form);
+      const response=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data).toString()});
+      if(response.ok){form.style.display='none';successState.style.display='block';}
+      else throw new Error('fail');
+    }catch{
+      submitBtn.disabled=false;
+      submitBtn.textContent='>_ REQUEST BETA ACCESS';
+      alert('Something went wrong. Please try again or email support@thispagedoesnotexist12345.com');
+    }
+  });
+</script>
 </body>
 </html>
