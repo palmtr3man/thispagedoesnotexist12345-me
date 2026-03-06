@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Developer Tools Portal | thispagedoesnotexist12345.me</title>
+  <!-- Umami Analytics — replace data-website-id with your .me domain ID from Umami dashboard -->
+  <script defer src="https://your-umami.vercel.app/script.js" data-website-id="DOMAIN_ID_FROM_UMAMI_ME"></script>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;700&display=swap');
     :root {
@@ -189,7 +192,7 @@
           <label class="check-label" for="agree">I understand this is a beta program — bugs are expected. I agree to share feedback and won't redistribute unreleased features. (<a href="https://thispagedoesnotexist12345.com" target="_blank">Full terms at .com</a>)</label>
         </div>
         <div class="submit-wrap">
-          <button type="submit" class="btn-submit" id="submit-btn">&gt;_ REQUEST BETA ACCESS</button>
+          <button type="submit" class="btn-submit" id="submit-btn" data-umami-event="Beta Access Request">&gt;_ REQUEST BETA ACCESS</button>
           <span class="form-note">No spam. Beta invite sent within 48 hrs.<br>Unsubscribe anytime.</span>
         </div>
       </form>
