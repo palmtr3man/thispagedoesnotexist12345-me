@@ -1,0 +1,12 @@
+[build]
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Redirect /boarding to the Netlify function for clean URL usage
+[[redirects]]
+  from = "/boarding"
+  to = "/.netlify/functions/boarding"
+  status = 200

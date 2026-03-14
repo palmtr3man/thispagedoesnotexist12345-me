@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Developer Tools Portal | thispagedoesnotexist12345.me</title>
+  <title>Boarding Access | thispagedoesnotexist12345.me</title>
   <!-- Umami Analytics — replace data-website-id with your .me domain ID from Umami dashboard -->
   <script defer src="https://your-umami.vercel.app/script.js" data-website-id="DOMAIN_ID_FROM_UMAMI_ME"></script>
 
@@ -52,7 +52,7 @@
     .perks { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:8px; margin-bottom:24px; }
     .perk { display:flex; align-items:flex-start; gap:8px; padding:12px; background:rgba(0,255,157,0.04); border:1px solid rgba(0,255,157,0.12); border-radius:4px; font-size:0.78em; color:rgba(232,248,255,0.6); line-height:1.4; }
     .perk-icon { color:var(--green); flex-shrink:0; }
-    #beta-form { display:flex; flex-direction:column; gap:14px; }
+    #boarding-form { display:flex; flex-direction:column; gap:14px; }
     .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
     .field { display:flex; flex-direction:column; gap:6px; }
     label { font-size:10px; letter-spacing:0.15em; color:var(--text-muted); text-transform:uppercase; }
@@ -83,6 +83,13 @@
     .success-title { font-family:'Exo 2',sans-serif; font-size:1.4em; font-weight:700; color:var(--green); margin-bottom:8px; text-shadow:0 0 20px rgba(0,255,157,0.4); }
     .success-sub { font-size:0.85em; color:rgba(232,248,255,0.5); line-height:1.6; max-width:420px; margin:0 auto 20px; }
     .ticket { display:inline-block; padding:12px 24px; background:rgba(0,255,157,0.06); border:1px dashed rgba(0,255,157,0.3); border-radius:4px; font-size:0.78em; color:var(--green); letter-spacing:0.1em; margin-bottom:20px; }
+    /* Inline confirmation panel rendered from /boarding response */
+    #boarding-response { display:none; padding:28px 32px; background:rgba(0,255,157,0.04); border:1px solid rgba(0,255,157,0.2); border-radius:6px; animation:fadeIn 0.5s ease both; font-size:0.88em; line-height:1.7; color:var(--white); }
+    #boarding-response h1 { font-family:'Exo 2',sans-serif; font-size:1.3em; font-weight:700; color:var(--green); margin-bottom:12px; text-shadow:0 0 16px rgba(0,255,157,0.35); }
+    #boarding-response p { margin-bottom:8px; color:rgba(232,248,255,0.65); }
+    #boarding-response strong { color:var(--cyan); }
+    #boarding-response.error-response { background:rgba(255,77,77,0.04); border-color:rgba(255,77,77,0.2); }
+    #boarding-response.error-response h1 { color:var(--red); text-shadow:none; }
     .footer { margin-top:24px; padding-top:20px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:0.75em; color:rgba(0,212,255,0.3); }
     .footer a { color:rgba(0,212,255,0.5); text-decoration:none; transition:color 0.2s; }
     .footer a:hover { color:var(--cyan); }
@@ -97,20 +104,24 @@
       <div class="dot dot-red"></div>
       <div class="dot dot-yellow"></div>
       <div class="dot dot-green"></div>
-      <span class="terminal-title">thispagedoesnotexist12345.me — beta@v0.1</span>
+      <span class="terminal-title">thispagedoesnotexist12345.me — boarding@v1.0</span>
     </div>
     <div class="terminal-body">
+
+      <!-- ── HERO ── -->
       <div class="header">
         <div class="prompt">// thispagedoesnotexist12345.me</div>
-        <h1>&gt; Developer Tools Portal</h1>
-        <p class="subtitle">Building the next generation of developer utilities — and we need sharp testers to help us ship them right.</p>
+        <h1>&gt; Boarding Access</h1>
+        <p class="subtitle">Private boarding lane for invited passengers. If you're here, someone cleared you to skip the public line.</p>
       </div>
       <div class="status-bar">
-        <div class="status-item active"><span class="status-dot"></span>BETA RECRUITMENT OPEN</div>
-        <div class="status-item warn">⚡ Q2 2026 LAUNCH</div>
-        <div class="status-item">🛠 3 TOOLS IN TESTING</div>
-        <div class="status-item">🎟 DISCOUNTED ACCESS</div>
+        <div class="status-item active"><span class="status-dot"></span>EARLY BOARDING OPEN</div>
+        <div class="status-item warn">⚡ Q2 2026 LAUNCH WINDOW</div>
+        <div class="status-item">🛠 TOOLS UNDER ACTIVE TEST</div>
+        <div class="status-item">🎟 FOUNDING PASSENGER ACCESS</div>
       </div>
+
+      <!-- ── TOOLS (unchanged) ── -->
       <div class="tools">
         <div class="section-label">// tools in development — thispagedoesnotexist12345.tech</div>
         <div class="tool-grid">
@@ -131,20 +142,22 @@
           </div>
         </div>
       </div>
-      <div class="divider">── JOIN THE QA TEAM ──</div>
+
+      <!-- ── BOARDING MANIFEST ── -->
+      <div class="divider">── BOARDING MANIFEST ──</div>
       <div class="beta-header">
-        <div class="beta-headline">Get Early Access. Help Us Build It Right.</div>
-        <p class="beta-subtext">We're recruiting developers and QA engineers to test our tools before public launch. Beta testers get <strong style="color:var(--cyan)">6 months of discounted access</strong> and direct input into what we build next. No experience floor — if you use dev tools, we want your perspective.</p>
+        <div class="beta-headline">Claim your passenger ID.</div>
+        <p class="beta-subtext">Help us shape the tools before we open the main gates.<br><br>This lane is for invited passengers only — sponsored seats, VIPs, community members, and family. You'll get a permanent passenger ID you can use across all thispagedoesnotexist12345 services, plus a direct line to share what's broken in your current tooling.</p>
       </div>
       <div class="perks">
-        <div class="perk"><span class="perk-icon">✦</span><span>6 months discounted access to all .tech tools</span></div>
-        <div class="perk"><span class="perk-icon">✦</span><span>Direct line to the product team — your bugs matter</span></div>
-        <div class="perk"><span class="perk-icon">✦</span><span>Founding tester badge &amp; priority support tier</span></div>
+        <div class="perk"><span class="perk-icon">✦</span><span>Founding passenger access to .tech tools</span></div>
+        <div class="perk"><span class="perk-icon">✦</span><span>Direct line to the product crew — your bugs and gaps matter</span></div>
+        <div class="perk"><span class="perk-icon">✦</span><span>Permanent passenger ID across .me / .tech / .info / .us</span></div>
         <div class="perk"><span class="perk-icon">✦</span><span>Early access to new tools before public release</span></div>
       </div>
-      <form id="beta-form" name="beta-waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-        <input type="hidden" name="form-name" value="beta-waitlist">
-        <p style="display:none"><input name="bot-field"></p>
+
+      <!-- ── BOARDING FORM ── -->
+      <form id="boarding-form" novalidate>
         <div class="form-row">
           <div class="field" id="field-name">
             <label for="name">// Name</label>
@@ -157,52 +170,47 @@
             <span class="error-msg">Valid email required</span>
           </div>
         </div>
-        <div class="form-row">
-          <div class="field" id="field-role">
-            <label for="role">// Role / Background *</label>
-            <select id="role" name="role" required>
-              <option value="" disabled selected>Select your focus...</option>
-              <option value="frontend">Frontend Developer</option>
-              <option value="backend">Backend Developer</option>
-              <option value="fullstack">Full Stack Developer</option>
-              <option value="qa">QA / SDET Engineer</option>
-              <option value="devops">DevOps / Platform Engineer</option>
-              <option value="other">Other / Hobbyist</option>
+        <div class="field" id="field-passenger-type">
+          <label for="passenger-type">// Passenger Type *</label>
+          <div class="field-wrap">
+            <select id="passenger-type" name="passenger_type" required>
+              <option value="" disabled selected>Select your seat type…</option>
+              <option value="Sponsored Passenger">Sponsored Passenger</option>
+              <option value="VIP / Referred">VIP / Referred</option>
+              <option value="Community Seat">Community Seat</option>
+              <option value="Family / Founding Circle">Family / Founding Circle</option>
+              <option value="Other">Other</option>
             </select>
-            <span class="error-msg">Please select a role</span>
           </div>
-          <div class="field" id="field-tool">
-            <label for="tool">// Which tool to test first? *</label>
-            <select id="tool" name="primary-tool" required>
-              <option value="" disabled selected>Pick a tool...</option>
-              <option value="link-recovery">Link Recovery Tool</option>
-              <option value="api-playground">API Playground</option>
-              <option value="tech-resources">Tech Resources</option>
-              <option value="all">All three — bring it on</option>
-            </select>
-            <span class="error-msg">Please pick a tool</span>
-          </div>
+          <span class="error-msg">Please select a passenger type</span>
         </div>
-        <div class="field" id="field-feedback">
-          <label for="feedback">// What would you improve? (optional)</label>
-          <textarea id="feedback" name="improvement-ideas" placeholder="What's broken in your current dev tooling? What gap are you most hoping we fill?..."></textarea>
+        <div class="field" id="field-broken-tooling">
+          <label for="broken-tooling">// What's broken in your current dev tooling? *</label>
+          <textarea id="broken-tooling" name="broken_tooling" placeholder="Tell us where your current tools fall apart…" required></textarea>
+          <span class="error-msg">Please tell us what's broken</span>
         </div>
-        <div class="check-field">
-          <input type="checkbox" id="agree" name="agree" required>
-          <label class="check-label" for="agree">I understand this is a beta program — bugs are expected. I agree to share feedback and won't redistribute unreleased features. (<a href="https://thispagedoesnotexist12345.com" target="_blank">Full terms at .com</a>)</label>
+        <div class="field" id="field-desired-gap">
+          <label for="desired-gap">// What gap are you most hoping we fill? *</label>
+          <textarea id="desired-gap" name="desired_gap" placeholder="What do you wish existed but doesn't yet?" required></textarea>
+          <span class="error-msg">Please tell us the gap you're hoping we fill</span>
+        </div>
+        <div class="field" id="field-notes">
+          <label for="notes">// Anything else we should know? (Optional)</label>
+          <textarea id="notes" name="notes" placeholder="Context, access needs, or how you heard about this lane…"></textarea>
+        </div>
+        <div class="check-field" id="field-beta-ack">
+          <input type="checkbox" id="beta-ack" name="beta_ack" required>
+          <label class="check-label" for="beta-ack">I UNDERSTAND THIS IS A BETA BOARDING PROGRAM — BUGS ARE EXPECTED. I AGREE TO SHARE FEEDBACK AND WON'T REDISTRIBUTE UNRELEASED FEATURES. (<a href="https://thispagedoesnotexist12345.com" target="_blank">FULL TERMS AT .COM</a>)</label>
         </div>
         <div class="submit-wrap">
-          <button type="submit" class="btn-submit" id="submit-btn" data-umami-event="Beta Access Request">&gt;_ REQUEST BETA ACCESS</button>
-          <span class="form-note">No spam. Beta invite sent within 48 hrs.<br>Unsubscribe anytime.</span>
+          <button type="submit" class="btn-submit" id="submit-btn" data-umami-event="Boarding Pass Request">&gt;_ REQUEST BOARDING PASS</button>
+          <span class="form-note">Manifest updates only. Boarding decisions sent within 48 hours.</span>
         </div>
       </form>
-      <div id="success-state">
-        <span class="success-icon">⬡</span>
-        <div class="success-title">// ACCESS REQUEST LOGGED</div>
-        <p class="success-sub">You're in the queue. We'll review your application and send a beta invite to your email within 48 hours. Keep an eye on your inbox.</p>
-        <div class="ticket">BETA-TESTER-QUEUE · thispagedoesnotexist12345.tech · Q2 2026</div>
-        <p style="font-size:0.78em;color:rgba(232,248,255,0.3)">In the meantime → <a href="https://www.thispagedoesnotexist12345.com" style="color:var(--cyan)">explore the main platform</a></p>
-      </div>
+
+      <!-- ── INLINE RESPONSE PANEL (populated by /boarding) ── -->
+      <div id="boarding-response"></div>
+
       <div class="footer">
         <span>thispagedoesnotexist12345.me</span>
         <div class="footer-links">
@@ -215,41 +223,91 @@
     </div>
   </div>
 </div>
+
 <script>
-  const form=document.getElementById('beta-form');
-  const successState=document.getElementById('success-state');
-  const submitBtn=document.getElementById('submit-btn');
-  function validateField(id,testFn){
-    const field=document.getElementById('field-'+id);
-    const input=document.getElementById(id);
-    if(!field||!input)return true;
-    const valid=testFn(input.value.trim());
-    field.classList.toggle('has-error',!valid);
-    input.classList.toggle('error',!valid);
+  const form = document.getElementById('boarding-form');
+  const responsePanel = document.getElementById('boarding-response');
+  const submitBtn = document.getElementById('submit-btn');
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function validateField(fieldId, inputId, testFn) {
+    const field = document.getElementById(fieldId);
+    const input = document.getElementById(inputId);
+    if (!field || !input) return true;
+    const valid = testFn(input.value.trim());
+    field.classList.toggle('has-error', !valid);
+    input.classList.toggle('error', !valid);
     return valid;
   }
-  function isValidEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
-  document.getElementById('email').addEventListener('blur',()=>validateField('email',isValidEmail));
-  document.getElementById('role').addEventListener('change',()=>validateField('role',v=>v!==''));
-  document.getElementById('tool').addEventListener('change',()=>validateField('tool',v=>v!==''));
-  form.addEventListener('submit',async(e)=>{
+
+  function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function notEmpty(v) { return v !== ''; }
+
+  document.getElementById('email').addEventListener('blur', () =>
+    validateField('field-email', 'email', isValidEmail));
+  document.getElementById('passenger-type').addEventListener('change', () =>
+    validateField('field-passenger-type', 'passenger-type', notEmpty));
+  document.getElementById('broken-tooling').addEventListener('blur', () =>
+    validateField('field-broken-tooling', 'broken-tooling', notEmpty));
+  document.getElementById('desired-gap').addEventListener('blur', () =>
+    validateField('field-desired-gap', 'desired-gap', notEmpty));
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const validEmail=validateField('email',isValidEmail);
-    const validRole=validateField('role',v=>v!=='');
-    const validTool=validateField('tool',v=>v!=='');
-    const agreed=document.getElementById('agree').checked;
-    if(!validEmail||!validRole||!validTool||!agreed)return;
-    submitBtn.disabled=true;
-    submitBtn.textContent='>_ SENDING...';
-    try{
-      const data=new FormData(form);
-      const response=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data).toString()});
-      if(response.ok){form.style.display='none';successState.style.display='block';}
-      else throw new Error('fail');
-    }catch{
-      submitBtn.disabled=false;
-      submitBtn.textContent='>_ REQUEST BETA ACCESS';
-      alert('Something went wrong. Please try again or email support@thispagedoesnotexist12345.com');
+
+    const validEmail       = validateField('field-email',          'email',          isValidEmail);
+    const validPassType    = validateField('field-passenger-type', 'passenger-type', notEmpty);
+    const validBroken      = validateField('field-broken-tooling', 'broken-tooling', notEmpty);
+    const validGap         = validateField('field-desired-gap',    'desired-gap',    notEmpty);
+    const agreed           = document.getElementById('beta-ack').checked;
+
+    if (!validEmail || !validPassType || !validBroken || !validGap || !agreed) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = '>_ SENDING…';
+
+    const payload = {
+      name:           document.getElementById('name').value.trim(),
+      email:          document.getElementById('email').value.trim(),
+      passenger_type: document.getElementById('passenger-type').value,
+      broken_tooling: document.getElementById('broken-tooling').value.trim(),
+      desired_gap:    document.getElementById('desired-gap').value.trim(),
+      notes:          document.getElementById('notes').value.trim(),
+      beta_ack:       true
+    };
+
+    try {
+      const res = await fetch('/.netlify/functions/boarding', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const html = await res.text();
+
+      form.style.display = 'none';
+      responsePanel.style.display = 'block';
+      responsePanel.classList.remove('error-response');
+
+      if (!res.ok) {
+        responsePanel.classList.add('error-response');
+      }
+
+      responsePanel.innerHTML = html;
+
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '>_ REQUEST BOARDING PASS';
+      responsePanel.style.display = 'block';
+      responsePanel.classList.add('error-response');
+      responsePanel.innerHTML = '<h1>Connection error</h1><p>Could not reach the boarding system. Please try again or email <strong>support@thispagedoesnotexist12345.com</strong></p>';
     }
   });
 </script>
