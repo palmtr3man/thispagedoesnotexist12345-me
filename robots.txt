@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://thispagedoesnotexist12345.me/sitemap.xml
