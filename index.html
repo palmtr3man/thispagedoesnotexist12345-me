@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boarding Access | The Ultimate Journey</title>
+  <title>Founding Passenger Access | The Ultimate Journey</title>
 
   <!-- SEO Meta -->
-  <meta name="description" content="Private boarding access for The Ultimate Journey — claim your founding passenger ID and get early access to developer tools before public launch.">
+  <meta name="description" content="The Ultimate Journey — founding passenger access for the TUJ career optimization platform. Claim your seat before the gate opens to the public.">
   <meta name="robots" content="index,follow">
 
   <!-- Favicon & PWA -->
@@ -17,14 +17,14 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thispagedoesnotexist12345.me/">
-  <meta property="og:title" content="Boarding Access | The Ultimate Journey">
-  <meta property="og:description" content="Private boarding lane for invited passengers. Claim your founding passenger ID and get early access to developer tools.">
+  <meta property="og:title" content="Founding Passenger Access | The Ultimate Journey">
+  <meta property="og:description" content="Private boarding lane for founding passengers. Claim your seat on the TUJ career optimization platform before the public gate opens.">
   <meta property="og:image" content="https://thispagedoesnotexist12345.me/og-image.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Boarding Access | The Ultimate Journey">
-  <meta name="twitter:description" content="Private boarding lane for invited passengers. Claim your founding passenger ID and get early access to developer tools.">
+  <meta name="twitter:title" content="Founding Passenger Access | The Ultimate Journey">
+  <meta name="twitter:description" content="Private boarding lane for founding passengers. Claim your seat on the TUJ career optimization platform before the public gate opens.">
   <meta name="twitter:image" content="https://thispagedoesnotexist12345.me/og-image.png">
 
   <!-- JSON-LD Structured Data -->
@@ -32,320 +32,961 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Boarding Access — The Ultimate Journey",
+    "name": "Founding Passenger Access — The Ultimate Journey",
     "url": "https://thispagedoesnotexist12345.me/",
-    "description": "Private boarding access for founding passengers of The Ultimate Journey developer tools platform."
+    "description": "Private boarding access for founding passengers of The Ultimate Journey career optimization platform."
   }
   </script>
 
-  <!-- Umami Analytics — shared .com ID, scoped to .me via data-domains, tagged beta for cohort filtering -->
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="5c935661-0414-4670-8777-a89e47266187" data-domains="thispagedoesnotexist12345.me" data-tag="beta"></script>
+  <!-- Umami Analytics — shared .com ID, scoped to .me via data-domains, tagged alpha for cohort filtering -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="5c935661-0414-4670-8777-a89e47266187" data-domains="thispagedoesnotexist12345.me" data-tag="alpha"></script>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;700&display=swap');
-    :root {
-      --cyan: #00d4ff; --cyan-dim: rgba(0,212,255,0.15); --cyan-glow: rgba(0,212,255,0.4);
-      --black: #000000; --surface: rgba(0,10,15,0.97); --border: rgba(0,212,255,0.25);
-      --text-muted: rgba(0,212,255,0.5); --white: #e8f8ff; --red: #ff4d4d; --green: #00ff9d;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0A0A0A;
+      color: #ffffff;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 1.5rem 0 3rem;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Share Tech Mono',monospace; background:var(--black); color:var(--cyan); min-height:100vh; display:flex; align-items:flex-start; justify-content:center; padding:40px 20px 60px; position:relative; overflow-x:hidden; }
-    body::before { content:''; position:fixed; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,212,255,0.015) 2px,rgba(0,212,255,0.015) 4px); pointer-events:none; z-index:100; }
-    body::after { content:''; position:fixed; inset:0; background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; z-index:0; }
-    .container { max-width:760px; width:100%; position:relative; z-index:1; }
-    .terminal { background:var(--surface); border:1px solid var(--border); border-radius:8px; box-shadow:0 0 0 1px rgba(0,212,255,0.08),0 0 40px rgba(0,212,255,0.12),0 0 80px rgba(0,212,255,0.06),inset 0 1px 0 rgba(0,212,255,0.1); overflow:hidden; animation:terminalIn 0.6s ease both; }
-    @keyframes terminalIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
-    .terminal-bar { display:flex; align-items:center; gap:8px; padding:12px 16px; background:rgba(0,212,255,0.05); border-bottom:1px solid var(--border); }
-    .dot { width:11px; height:11px; border-radius:50%; }
-    .dot-red{background:#ff5f56;box-shadow:0 0 6px #ff5f5680} .dot-yellow{background:#ffbd2e;box-shadow:0 0 6px #ffbd2e80} .dot-green{background:#27c93f;box-shadow:0 0 6px #27c93f80}
-    .terminal-title { margin-left:auto; font-size:11px; color:var(--text-muted); letter-spacing:0.1em; }
-    .terminal-body { padding:36px 40px; }
-    .header { margin-bottom:32px; }
-    .prompt { font-size:11px; color:var(--text-muted); letter-spacing:0.15em; margin-bottom:8px; }
-    h1 { font-family:'Exo 2',sans-serif; font-size:clamp(1.8em,4vw,2.6em); font-weight:700; color:var(--cyan); text-shadow:0 0 20px var(--cyan-glow),0 0 40px rgba(0,212,255,0.2); letter-spacing:0.04em; line-height:1.1; margin-bottom:10px; }
-    .subtitle { font-size:0.95em; color:rgba(232,248,255,0.55); line-height:1.5; }
-    .status-bar { display:flex; align-items:center; gap:20px; padding:10px 14px; background:rgba(0,212,255,0.04); border:1px solid var(--border); border-radius:4px; margin-bottom:28px; font-size:11px; flex-wrap:wrap; }
-    .status-item { display:flex; align-items:center; gap:6px; color:var(--text-muted); }
-    .status-dot { width:6px; height:6px; border-radius:50%; background:var(--green); box-shadow:0 0 6px var(--green); animation:pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-    .status-item.active{color:var(--green)} .status-item.warn{color:#ffbd2e}
-    .tools { margin-bottom:36px; }
-    .section-label { font-size:10px; letter-spacing:0.2em; color:var(--text-muted); text-transform:uppercase; margin-bottom:14px; }
-    .tool-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; }
-    .tool-card { padding:16px; background:var(--cyan-dim); border:1px solid var(--border); border-radius:4px; transition:all 0.2s ease; cursor:default; }
-    .tool-card:hover { background:rgba(0,212,255,0.1); border-color:rgba(0,212,255,0.5); box-shadow:0 0 16px rgba(0,212,255,0.15); transform:translateY(-1px); }
-    .tool-name { font-size:0.9em; color:var(--cyan); margin-bottom:5px; }
-    .tool-desc { font-size:0.78em; color:rgba(232,248,255,0.45); line-height:1.5; }
-    .tool-badge { display:inline-block; font-size:9px; letter-spacing:0.1em; padding:2px 7px; border-radius:2px; margin-top:8px; background:rgba(0,212,255,0.1); border:1px solid rgba(0,212,255,0.3); color:var(--text-muted); }
-    .tool-badge.beta { background:rgba(255,189,46,0.1); border-color:rgba(255,189,46,0.3); color:#ffbd2e; }
-    .divider { display:flex; align-items:center; gap:12px; margin:28px 0; color:var(--text-muted); font-size:11px; letter-spacing:0.1em; }
-    .divider::before,.divider::after { content:''; flex:1; height:1px; background:var(--border); }
-    .beta-header { margin-bottom:20px; }
-    .beta-headline { font-family:'Exo 2',sans-serif; font-size:1.25em; font-weight:600; color:var(--white); margin-bottom:8px; }
-    .beta-subtext { font-size:0.82em; color:rgba(232,248,255,0.5); line-height:1.6; }
-    .perks { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:8px; margin-bottom:24px; }
-    .perk { display:flex; align-items:flex-start; gap:8px; padding:12px; background:rgba(0,255,157,0.04); border:1px solid rgba(0,255,157,0.12); border-radius:4px; font-size:0.78em; color:rgba(232,248,255,0.6); line-height:1.4; }
-    .perk-icon { color:var(--green); flex-shrink:0; }
-    #boarding-form { display:flex; flex-direction:column; gap:14px; }
-    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-    .field { display:flex; flex-direction:column; gap:6px; }
-    label { font-size:10px; letter-spacing:0.15em; color:var(--text-muted); text-transform:uppercase; }
-    .field-wrap { position:relative; }
-    input,select,textarea { width:100%; background:rgba(0,0,0,0.6); border:1px solid var(--border); border-radius:3px; padding:10px 12px; font-family:'Share Tech Mono',monospace; font-size:0.85em; color:var(--white); outline:none; transition:border-color 0.2s,box-shadow 0.2s; appearance:none; }
-    input::placeholder,textarea::placeholder { color:rgba(232,248,255,0.2); }
-    input:focus,select:focus,textarea:focus { border-color:var(--cyan); box-shadow:0 0 0 2px rgba(0,212,255,0.1),0 0 12px rgba(0,212,255,0.1); }
-    input.error,select.error,textarea.error { border-color:var(--red); box-shadow:0 0 0 2px rgba(255,77,77,0.1); }
-    .error-msg { font-size:10px; color:var(--red); display:none; margin-top:3px; }
-    .field.has-error .error-msg { display:block; }
-    select option { background:#0a0a0a; color:var(--white); }
-    textarea { resize:vertical; min-height:80px; }
-    .check-field { display:flex; align-items:flex-start; gap:10px; cursor:pointer; }
-    .check-field input[type="checkbox"] { width:16px; height:16px; min-width:16px; padding:0; margin-top:1px; accent-color:var(--cyan); cursor:pointer; }
-    .check-label { font-size:0.78em; color:rgba(232,248,255,0.5); line-height:1.5; cursor:pointer; }
-    .check-label a { color:var(--cyan); text-decoration:none; }
-    .check-label a:hover { text-decoration:underline; }
-    .submit-wrap { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
-    .btn-submit { display:inline-flex; align-items:center; gap:8px; padding:13px 32px; background:var(--cyan); color:#000; border:none; border-radius:3px; font-family:'Share Tech Mono',monospace; font-size:0.9em; font-weight:bold; letter-spacing:0.08em; cursor:pointer; transition:all 0.2s ease; position:relative; overflow:hidden; }
-    .btn-submit::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,0.15) 50%,transparent 60%); transform:translateX(-100%); transition:transform 0.4s ease; }
-    .btn-submit:hover { background:#fff; box-shadow:0 0 24px rgba(0,212,255,0.5); transform:translateY(-1px); }
-    .btn-submit:hover::after { transform:translateX(100%); }
-    .btn-submit:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
-    .form-note { font-size:0.75em; color:rgba(232,248,255,0.3); line-height:1.5; }
-    #success-state { display:none; text-align:center; padding:32px 0; animation:fadeIn 0.5s ease both; }
-    @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-    .success-icon { font-size:2.5em; margin-bottom:16px; display:block; }
-    .success-title { font-family:'Exo 2',sans-serif; font-size:1.4em; font-weight:700; color:var(--green); margin-bottom:8px; text-shadow:0 0 20px rgba(0,255,157,0.4); }
-    .success-sub { font-size:0.85em; color:rgba(232,248,255,0.5); line-height:1.6; max-width:420px; margin:0 auto 20px; }
-    .ticket { display:inline-block; padding:12px 24px; background:rgba(0,255,157,0.06); border:1px dashed rgba(0,255,157,0.3); border-radius:4px; font-size:0.78em; color:var(--green); letter-spacing:0.1em; margin-bottom:20px; }
-    /* Inline confirmation panel rendered from /boarding response */
-    #boarding-response { display:none; padding:28px 32px; background:rgba(0,255,157,0.04); border:1px solid rgba(0,255,157,0.2); border-radius:6px; animation:fadeIn 0.5s ease both; font-size:0.88em; line-height:1.7; color:var(--white); }
-    #boarding-response h1 { font-family:'Exo 2',sans-serif; font-size:1.3em; font-weight:700; color:var(--green); margin-bottom:12px; text-shadow:0 0 16px rgba(0,255,157,0.35); }
-    #boarding-response p { margin-bottom:8px; color:rgba(232,248,255,0.65); }
-    #boarding-response strong { color:var(--cyan); }
-    #boarding-response.error-response { background:rgba(255,77,77,0.04); border-color:rgba(255,77,77,0.2); }
-    #boarding-response.error-response h1 { color:var(--red); text-shadow:none; }
-    .footer { margin-top:24px; padding-top:20px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:0.75em; color:rgba(0,212,255,0.3); }
-    .footer a { color:rgba(0,212,255,0.5); text-decoration:none; transition:color 0.2s; }
-    .footer a:hover { color:var(--cyan); }
-    .footer-links { display:flex; gap:16px; flex-wrap:wrap; }
-    @media (max-width:560px) { .terminal-body{padding:24px 20px} .form-row{grid-template-columns:1fr} h1{font-size:1.6em} .perks{grid-template-columns:1fr} }
+
+    /* ── Black Glass Theme (always active) ─────────────────────────────── */
+    .container {
+      max-width: 700px;
+      width: 90%;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      border-radius: 16px;
+      background: rgba(10, 10, 10, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      z-index: 1;
+      animation: containerIn 0.6s ease both;
+    }
+
+    @keyframes containerIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+      color: #A8C400;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    /* ── Status Section ─────────────────────────────────────────────────── */
+    .status-section {
+      position: relative;
+      border: 1px solid rgba(168, 196, 0, 0.3);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .status-scanlines {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(168, 196, 0, 0.02) 2px,
+        rgba(168, 196, 0, 0.02) 4px
+      );
+      pointer-events: none;
+    }
+
+    .status-title {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      flex-wrap: wrap;
+    }
+
+    .status-title-label {
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    .badge {
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      border: 1px solid rgba(168, 196, 0, 0.5);
+      background: rgba(168, 196, 0, 0.12);
+      color: #A8C400;
+      white-space: nowrap;
+    }
+
+    .badge--highlight {
+      border-color: rgba(168, 196, 0, 0.6);
+      background: rgba(168, 196, 0, 0.15);
+      color: #A8C400;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .status-text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+      max-width: 100%;
+      word-wrap: break-word;
+    }
+
+    /* Hoverable path keywords — same mechanic as .com */
+    .status-text .path {
+      color: #A8C400;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-block;
+      position: relative;
+    }
+
+    .status-text .path::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #A8C400;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .status-text .path:hover {
+      color: #fff;
+      text-shadow: 0 0 12px rgba(168, 196, 0, 0.9);
+      transform: scale(1.05);
+    }
+
+    .status-text .path:hover::after { opacity: 1; }
+
+    /* ── What You're Getting (perks grid) ───────────────────────────────── */
+    .perks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .perk-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(168, 196, 0, 0.2);
+      background: rgba(0, 0, 0, 0.35);
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    .perk-card:hover {
+      border-color: rgba(168, 196, 0, 0.55);
+      background: rgba(168, 196, 0, 0.06);
+      box-shadow: 0 0 12px rgba(168, 196, 0, 0.12);
+    }
+
+    .perk-icon { font-size: 1.2rem; }
+
+    .perk-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #A8C400;
+      letter-spacing: 0.03em;
+    }
+
+    .perk-desc {
+      font-size: 0.74rem;
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 1.4;
+    }
+
+    /* ── Divider ─────────────────────────────────────────────────────────── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 1.75rem 0;
+      opacity: 0.35;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(168, 196, 0, 0.4);
+    }
+
+    .divider span {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(168, 196, 0, 0.8);
+      white-space: nowrap;
+    }
+
+    /* ── Boarding Form ───────────────────────────────────────────────────── */
+    .form-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-headline {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #A8C400;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .form-subtext {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.6;
+    }
+
+    #boarding-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: rgba(168, 196, 0, 0.6);
+      text-transform: uppercase;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(168, 196, 0, 0.25);
+      border-radius: 6px;
+      padding: 0.65rem 0.9rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(168, 196, 0, 0.8);
+      box-shadow: 0 0 0 2px rgba(168, 196, 0, 0.1), 0 0 12px rgba(168, 196, 0, 0.1);
+    }
+
+    input.error, select.error, textarea.error {
+      border-color: #ff6b6b;
+      box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.1);
+    }
+
+    .error-msg {
+      font-size: 0.72rem;
+      color: #ff6b6b;
+      display: none;
+      margin-top: 2px;
+    }
+
+    .field.has-error .error-msg { display: block; }
+
+    select option { background: #0a0a0a; color: #fff; }
+    textarea { resize: vertical; min-height: 80px; }
+
+    .check-field {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      cursor: pointer;
+    }
+
+    .check-field input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      padding: 0;
+      margin-top: 2px;
+      accent-color: #A8C400;
+      cursor: pointer;
+    }
+
+    .check-label {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    .check-label a { color: #A8C400; text-decoration: none; }
+    .check-label a:hover { text-decoration: underline; }
+
+    .submit-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      border: 1px solid rgba(168, 196, 0, 0.6);
+      background: rgba(168, 196, 0, 0.12);
+      color: #A8C400;
+      backdrop-filter: blur(10px);
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s, background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-submit::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(168, 196, 0, 0.1) 50%, transparent 60%);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      border-color: rgba(168, 196, 0, 0.9);
+      background: rgba(168, 196, 0, 0.2);
+      box-shadow: 0 0 20px rgba(168, 196, 0, 0.3);
+    }
+
+    .btn-submit:hover::after { transform: translateX(100%); }
+
+    .btn-submit:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-note {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.3);
+      line-height: 1.5;
+    }
+
+    /* ── Response Panel ──────────────────────────────────────────────────── */
+    #boarding-response {
+      display: none;
+      padding: 1.75rem 2rem;
+      background: rgba(168, 196, 0, 0.04);
+      border: 1px solid rgba(168, 196, 0, 0.2);
+      border-radius: 8px;
+      animation: fadeIn 0.5s ease both;
+      font-size: 0.88em;
+      line-height: 1.7;
+      color: #fff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    #boarding-response h1 {
+      font-size: 1.3em;
+      font-weight: 700;
+      color: #A8C400;
+      margin-bottom: 0.75rem;
+    }
+
+    #boarding-response p {
+      margin-bottom: 0.5rem;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    #boarding-response strong { color: #A8C400; }
+
+    #boarding-response.error-response {
+      background: rgba(255, 107, 107, 0.04);
+      border-color: rgba(255, 107, 107, 0.2);
+    }
+
+    #boarding-response.error-response h1 { color: #ff6b6b; }
+
+    /* ── Puzzle Tracker (mirrored from .com) ─────────────────────────────── */
+    .puzzle-tracker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin: 1.5rem 0 0.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(168, 196, 0, 0.4);
+    }
+
+    .puzzle-diamonds {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .puzzle-diamond {
+      font-size: 1rem;
+      color: rgba(168, 196, 0, 0.2);
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      cursor: default;
+    }
+
+    .puzzle-diamond.lit {
+      color: #A8C400;
+      text-shadow: 0 0 10px rgba(168, 196, 0, 0.7);
+    }
+
+    /* ── Ecosystem nav buttons ───────────────────────────────────────────── */
+    .btn-row {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(168, 196, 0, 0.1);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      letter-spacing: 0.04em;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(168, 196, 0, 0.25);
+      color: #A8C400;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(168, 196, 0, 0.6);
+      box-shadow: 0 0 12px rgba(168, 196, 0, 0.2);
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────────── */
+    footer {
+      font-size: 0.72rem;
+      opacity: 0.4;
+      margin-top: 2rem;
+      text-align: center;
+      color: rgba(168, 196, 0, 0.7);
+    }
+
+    /* ── St. Patrick's Day Theme (March 17 only) ─────────────────────────── */
+    .st-patricks h1 { color: #2E8B3A; }
+    .st-patricks .badge { border-color: rgba(46, 139, 58, 0.5); background: rgba(46, 139, 58, 0.12); color: #2E8B3A; }
+    .st-patricks .badge--highlight { border-color: rgba(46, 139, 58, 0.6); background: rgba(46, 139, 58, 0.15); color: #2E8B3A; }
+    .st-patricks .status-section { border-color: rgba(46, 139, 58, 0.3); }
+    .st-patricks .perk-name { color: #2E8B3A; }
+    .st-patricks .perk-card { border-color: rgba(46, 139, 58, 0.2); }
+    .st-patricks .perk-card:hover { border-color: rgba(46, 139, 58, 0.55); background: rgba(46, 139, 58, 0.06); box-shadow: 0 0 12px rgba(46, 139, 58, 0.12); }
+    .st-patricks .btn { border-color: rgba(46, 139, 58, 0.25); color: #2E8B3A; }
+    .st-patricks .btn:hover { border-color: rgba(46, 139, 58, 0.6); box-shadow: 0 0 12px rgba(46, 139, 58, 0.2); }
+    .st-patricks .btn-submit { border-color: rgba(46, 139, 58, 0.6); background: rgba(46, 139, 58, 0.12); color: #2E8B3A; }
+    .st-patricks .btn-submit:hover { border-color: rgba(46, 139, 58, 0.9); background: rgba(46, 139, 58, 0.2); box-shadow: 0 0 20px rgba(46, 139, 58, 0.3); }
+    .st-patricks .puzzle-diamond.lit { color: #2E8B3A; text-shadow: 0 0 10px rgba(46, 139, 58, 0.7); }
+    .st-patricks label { color: rgba(46, 139, 58, 0.6); }
+    .st-patricks input:focus, .st-patricks select:focus, .st-patricks textarea:focus { border-color: rgba(46, 139, 58, 0.8); box-shadow: 0 0 0 2px rgba(46, 139, 58, 0.1); }
+    .st-patricks .form-headline { color: #2E8B3A; }
+    .st-patricks #boarding-response { background: rgba(46, 139, 58, 0.04); border-color: rgba(46, 139, 58, 0.2); }
+    .st-patricks #boarding-response h1 { color: #2E8B3A; }
+    .st-patricks #boarding-response strong { color: #2E8B3A; }
+    footer .st-patricks-accent { color: #2E8B3A; }
+
+    /* ── Responsive ──────────────────────────────────────────────────────── */
+    @media (max-width: 560px) {
+      .container { padding: 2rem 1.25rem; }
+      h1 { font-size: 1.6rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .perks-grid { grid-template-columns: 1fr; }
+      .btn-row { flex-direction: column; align-items: stretch; }
+      .btn { text-align: center; }
+    }
   </style>
 </head>
-<body>
-<div class="container">
-  <div class="terminal">
-    <div class="terminal-bar">
-      <div class="dot dot-red"></div>
-      <div class="dot dot-yellow"></div>
-      <div class="dot dot-green"></div>
-      <span class="terminal-title">thispagedoesnotexist12345.me — boarding@v1.0</span>
+<body data-state="landing">
+
+  <!-- Canvas hero — flight-path particle animation (matched to .com) -->
+  <canvas id="hero-canvas" aria-hidden="true" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0;transition:opacity 0.6s ease;"></canvas>
+
+  <div class="container">
+
+    <!-- ── HERO ─────────────────────────────────────────────────────────── -->
+    <h1>✈️ The Ultimate Journey</h1>
+    <p class="subtitle">Career Optimization Platform — Founding Passenger Access</p>
+
+    <!-- ── STATUS SECTION ───────────────────────────────────────────────── -->
+    <div class="status-section">
+      <div class="status-scanlines"></div>
+      <div class="status-title">
+        <span class="status-title-label">PageForward Airways</span>
+        <span class="badge badge--highlight">ALPHA COHORT</span>
+        <span class="badge">Q2 2026</span>
+      </div>
+      <p class="status-text">
+        You're at the private gate. The <span class="path" data-path="com">.com</span> public gate opens after this cohort boards.<br><br>
+        The Ultimate Journey runs one focused cohort through the full career optimization system — mapping your experience to what the market is actually hiring for. This first flight carries founding passengers only: <span class="path" data-path="studio">Studio</span> access, <span class="path" data-path="signal">Signal</span> newsletter, and the full <span class="path" data-path="systems">Systems</span> toolkit — locked in at founding rates before public pricing goes live.
+      </p>
+      <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;font-size:0.8rem;">
+        <span style="display:inline-flex;align-items:center;gap:6px;color:rgba(0,255,100,0.85);border:1px solid rgba(0,255,100,0.35);background:rgba(0,255,100,0.08);padding:0.2rem 0.65rem;border-radius:999px;animation:pulse 2s ease-in-out infinite;">
+          <span style="display:inline-block;width:7px;height:7px;background:#00ff64;border-radius:50%;animation:pulse 1.2s ease-in-out infinite;"></span>
+          EARLY BOARDING OPEN
+        </span>
+        <span style="color:rgba(168,196,0,0.55);font-size:0.75rem;letter-spacing:0.04em;">One flight. Five seats. Founding rates locked in.</span>
+      </div>
     </div>
-    <div class="terminal-body">
 
-      <!-- ── HERO ── -->
-      <header class="header">
-        <div class="prompt">// thispagedoesnotexist12345.me</div>
-        <h1>&gt; Boarding Access</h1>
-        <p class="subtitle">Private boarding lane for invited passengers. If you're here, someone cleared you to skip the public line.</p>
-      </header>
-      <main>
-      <div class="status-bar">
-        <div class="status-item active"><span class="status-dot"></span>EARLY BOARDING OPEN</div>
-        <div class="status-item warn">⚡ Q2 2026 LAUNCH WINDOW</div>
-        <div class="status-item">🛠 TOOLS UNDER ACTIVE TEST</div>
-        <div class="status-item">🎟 FOUNDING PASSENGER ACCESS</div>
+    <!-- ── WHAT YOU'RE GETTING ───────────────────────────────────────────── -->
+    <div class="perks-grid">
+      <div class="perk-card">
+        <div class="perk-icon">🎟</div>
+        <div class="perk-name">Founding Passenger Rate</div>
+        <div class="perk-desc">Your seat price locks in permanently — never increases when public pricing goes live.</div>
       </div>
-
-      <!-- ── TOOLS (unchanged) ── -->
-      <div class="tools">
-        <div class="section-label">// tools in development — thispagedoesnotexist12345.tech</div>
-        <div class="tool-grid">
-          <div class="tool-card">
-            <div class="tool-name">&gt; Link Recovery Tool</div>
-            <div class="tool-desc">Broken link detection &amp; recovery. Scan, analyze, and fix dead links across your entire web infrastructure.</div>
-            <span class="tool-badge beta">BETA</span>
-          </div>
-          <div class="tool-card">
-            <div class="tool-name">&gt; API Playground</div>
-            <div class="tool-desc">Interactive testing for REST, GraphQL &amp; WebSocket. Real-time debugging and live documentation.</div>
-            <span class="tool-badge beta">BETA</span>
-          </div>
-          <div class="tool-card">
-            <div class="tool-name">&gt; Tech Resources</div>
-            <div class="tool-desc">Curated dev tools, libraries &amp; frameworks. Continuously updated for modern web development.</div>
-            <span class="tool-badge">ALPHA</span>
-          </div>
-        </div>
+      <div class="perk-card">
+        <div class="perk-icon">📄</div>
+        <div class="perk-name">Studio Access</div>
+        <div class="perk-desc">AI-powered resume builder and one-page optimization toolkit, live before public launch.</div>
       </div>
-
-      <!-- ── BOARDING MANIFEST ── -->
-      <div class="divider">── BOARDING MANIFEST ──</div>
-      <div class="beta-header">
-        <div class="beta-headline">Claim your passenger ID.</div>
-        <p class="beta-subtext">Help us shape the tools before we open the main gates.<br><br>This lane is for invited passengers only — sponsored seats, VIPs, community members, and family. You'll get a permanent passenger ID you can use across all thispagedoesnotexist12345 services, plus a direct line to share what's broken in your current tooling.</p>
+      <div class="perk-card">
+        <div class="perk-icon">📡</div>
+        <div class="perk-name">Signal Newsletter</div>
+        <div class="perk-desc">Your mission brief. Every issue maps a checkpoint in the 8-step boarding sequence.</div>
       </div>
-      <div class="perks">
-        <div class="perk"><span class="perk-icon">✦</span><span>Founding passenger access to .tech tools</span></div>
-        <div class="perk"><span class="perk-icon">✦</span><span>Direct line to the product crew — your bugs and gaps matter</span></div>
-        <div class="perk"><span class="perk-icon">✦</span><span>Permanent passenger ID across .me / .tech / .info / .us</span></div>
-        <div class="perk"><span class="perk-icon">✦</span><span>Early access to new tools before public release</span></div>
+      <div class="perk-card">
+        <div class="perk-icon">⚙️</div>
+        <div class="perk-name">Systems Toolkit</div>
+        <div class="perk-desc">Full access to the .tech developer and career tools ecosystem — alpha builds included.</div>
       </div>
-
-      <!-- ── BOARDING FORM ── -->
-      <form id="boarding-form" novalidate>
-        <div class="form-row">
-          <div class="field" id="field-name">
-            <label for="name">// Name</label>
-            <div class="field-wrap"><input type="text" id="name" name="name" placeholder="Jane Smith" autocomplete="name"></div>
-            <span class="error-msg">Name is required</span>
-          </div>
-          <div class="field" id="field-email">
-            <label for="email">// Email *</label>
-            <div class="field-wrap"><input type="email" id="email" name="email" placeholder="dev@example.com" autocomplete="email" required></div>
-            <span class="error-msg">Valid email required</span>
-          </div>
-        </div>
-        <div class="field" id="field-passenger-type">
-          <label for="passenger-type">// Passenger Type *</label>
-          <div class="field-wrap">
-            <select id="passenger-type" name="passenger_type" required>
-              <option value="" disabled selected>Select your seat type…</option>
-              <option value="Sponsored Passenger">Sponsored Passenger</option>
-              <option value="VIP / Referred">VIP / Referred</option>
-              <option value="Community Seat">Community Seat</option>
-              <option value="Family / Founding Circle">Family / Founding Circle</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <span class="error-msg">Please select a passenger type</span>
-        </div>
-        <div class="field" id="field-broken-tooling">
-          <label for="broken-tooling">// What's broken in your current dev tooling? *</label>
-          <textarea id="broken-tooling" name="broken_tooling" placeholder="Tell us where your current tools fall apart…" required></textarea>
-          <span class="error-msg">Please tell us what's broken</span>
-        </div>
-        <div class="field" id="field-desired-gap">
-          <label for="desired-gap">// What gap are you most hoping we fill? *</label>
-          <textarea id="desired-gap" name="desired_gap" placeholder="What do you wish existed but doesn't yet?" required></textarea>
-          <span class="error-msg">Please tell us the gap you're hoping we fill</span>
-        </div>
-        <div class="field" id="field-notes">
-          <label for="notes">// Anything else we should know? (Optional)</label>
-          <textarea id="notes" name="notes" placeholder="Context, access needs, or how you heard about this lane…"></textarea>
-        </div>
-        <div class="check-field" id="field-beta-ack">
-          <input type="checkbox" id="beta-ack" name="beta_ack" required>
-          <label class="check-label" for="beta-ack">I UNDERSTAND THIS IS A BETA BOARDING PROGRAM — BUGS ARE EXPECTED. I AGREE TO SHARE FEEDBACK AND WON'T REDISTRIBUTE UNRELEASED FEATURES. (<a href="https://thispagedoesnotexist12345.com" target="_blank">FULL TERMS AT .COM</a>)</label>
-        </div>
-        <div class="submit-wrap">
-          <button type="submit" class="btn-submit" id="submit-btn" data-umami-event="Boarding Pass Request">&gt;_ REQUEST BOARDING PASS</button>
-          <span class="form-note">Manifest updates only. Boarding decisions sent within 48 hours.</span>
-        </div>
-      </form>
-
-      <!-- ── INLINE RESPONSE PANEL (populated by /boarding) ── -->
-      <div id="boarding-response"></div>
-      </main>
-
-      <footer class="footer">
-        <span>thispagedoesnotexist12345.me</span>
-        <nav class="footer-links" aria-label="Ecosystem navigation">
-          <a href="https://www.thispagedoesnotexist12345.com">.com</a>
-          <a href="https://thispagedoesnotexist12345.tech">.tech</a>
-          <a href="https://thispagedoesnotexist12345.info">.info</a>
-          <a href="https://newsletter.thispagedoesnotexist12345.us">.us</a>
-        </nav>
-      </footer>
+      <div class="perk-card">
+        <div class="perk-icon">🛂</div>
+        <div class="perk-name">Permanent Passenger ID</div>
+        <div class="perk-desc">One ID across all TUJ services — .com, .tech, .info, .us. Yours for the duration of the journey.</div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon">🗺</div>
+        <div class="perk-name">Direct Line to the Crew</div>
+        <div class="perk-desc">Your feedback shapes the product. Founding passengers have a direct channel — not a ticket queue.</div>
+      </div>
     </div>
+
+    <!-- ── BOARDING MANIFEST ─────────────────────────────────────────────── -->
+    <div class="divider"><span>boarding manifest</span></div>
+
+    <div class="form-header">
+      <div class="form-headline">Claim your founding seat.</div>
+      <p class="form-subtext">
+        This lane is for invited passengers — sponsored seats, VIPs, community members, and founding circle. Tell us where you are in your career journey and what brought you here. Boarding decisions are sent within 48 hours.
+      </p>
+    </div>
+
+    <form id="boarding-form" novalidate>
+      <div class="form-row">
+        <div class="field" id="field-name">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Smith" autocomplete="name">
+          <span class="error-msg">Name is required</span>
+        </div>
+        <div class="field" id="field-email">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+          <span class="error-msg">Valid email required</span>
+        </div>
+      </div>
+
+      <div class="field" id="field-passenger-type">
+        <label for="passenger-type">Seat Type *</label>
+        <select id="passenger-type" name="passenger_type" required>
+          <option value="" disabled selected>Select your seat type…</option>
+          <option value="Sponsored Passenger">Sponsored Passenger</option>
+          <option value="VIP / Referred">VIP / Referred</option>
+          <option value="Community Seat">Community Seat</option>
+          <option value="Family / Founding Circle">Family / Founding Circle</option>
+          <option value="Other">Other</option>
+        </select>
+        <span class="error-msg">Please select a seat type</span>
+      </div>
+
+      <div class="field" id="field-career-stage">
+        <label for="career-stage">Where are you in your career right now? *</label>
+        <textarea id="career-stage" name="broken_tooling" placeholder="Restarting after a gap, pivoting industries, stuck in the same role — tell us where you are…" required></textarea>
+        <span class="error-msg">Please tell us where you are in your career</span>
+      </div>
+
+      <div class="field" id="field-desired-gap">
+        <label for="desired-gap">What outcome are you most hoping TUJ delivers? *</label>
+        <textarea id="desired-gap" name="desired_gap" placeholder="A new role, a clearer path, a better resume — what does success look like for you?" required></textarea>
+        <span class="error-msg">Please tell us the outcome you're hoping for</span>
+      </div>
+
+      <div class="field" id="field-notes">
+        <label for="notes">Anything else we should know? (Optional)</label>
+        <textarea id="notes" name="notes" placeholder="Context, access needs, or how you heard about this lane…"></textarea>
+      </div>
+
+      <div class="check-field" id="field-beta-ack">
+        <input type="checkbox" id="beta-ack" name="beta_ack" required>
+        <label class="check-label" for="beta-ack">
+          I UNDERSTAND THIS IS AN ALPHA COHORT — SOME FEATURES ARE STILL BEING BUILT. I AGREE TO SHARE FEEDBACK AND WON'T REDISTRIBUTE UNRELEASED FEATURES.
+          (<a href="https://thispagedoesnotexist12345.com" target="_blank" rel="noopener noreferrer">FULL TERMS AT .COM</a>)
+        </label>
+      </div>
+
+      <div class="submit-wrap">
+        <button type="submit" class="btn-submit" id="submit-btn" data-umami-event="Founding Seat Request">
+          ✈️ Request Founding Seat
+        </button>
+        <span class="form-note">Boarding decisions sent within 48 hours. Founding rates locked on confirmation.</span>
+      </div>
+    </form>
+
+    <!-- ── INLINE RESPONSE PANEL (populated by /boarding) ───────────────── -->
+    <div id="boarding-response"></div>
+
+    <!-- ── PUZZLE TRACKER (mirrored from .com) ──────────────────────────── -->
+    <div class="puzzle-tracker" id="puzzleTracker">
+      <span>Paths Explored</span>
+      <div class="puzzle-diamonds">
+        <span class="puzzle-diamond" id="diamond-com"    title=".com">✦</span>
+        <span class="puzzle-diamond" id="diamond-studio" title="Studio">✦</span>
+        <span class="puzzle-diamond" id="diamond-signal" title="Signal">✦</span>
+        <span class="puzzle-diamond" id="diamond-systems" title="Systems">✦</span>
+      </div>
+    </div>
+
+    <!-- ── ECOSYSTEM NAV ─────────────────────────────────────────────────── -->
+    <div class="btn-row">
+      <a href="https://www.thispagedoesnotexist12345.com" class="btn" data-path="com"   target="_blank" rel="noopener noreferrer" data-umami-event="Ecosystem .com Click">🚀 .com</a>
+      <a href="https://www.thispagedoesnotexist12345.com/Studio" class="btn" data-path="studio" target="_blank" rel="noopener noreferrer" data-umami-event="Ecosystem Studio Click">📄 Studio</a>
+      <a href="https://newsletter.thispagedoesnotexist12345.us/" class="btn" data-path="signal" target="_blank" rel="noopener noreferrer" data-umami-event="Ecosystem Signal Click">📡 Signal</a>
+      <a href="https://www.thispagedoesnotexist12345.tech" class="btn" data-path="systems" target="_blank" rel="noopener noreferrer" data-umami-event="Ecosystem Systems Click">⚙️ Systems</a>
+    </div>
+
+    <footer>
+      &copy; 2026 The Ultimate Journey &nbsp;|&nbsp;
+      <span id="theme-status">Black Glass Theme Active</span>
+      <span class="st-patricks-accent" style="display:none;"> ☘️</span>
+    </footer>
   </div>
-</div>
 
-<script>
-  const form = document.getElementById('boarding-form');
-  const responsePanel = document.getElementById('boarding-response');
-  const submitBtn = document.getElementById('submit-btn');
+  <!-- ── SCRIPTS ────────────────────────────────────────────────────────── -->
+  <script>
+    // ── Boarding form validation + submission ────────────────────────────
+    (function () {
+      const form        = document.getElementById('boarding-form');
+      const responsePanel = document.getElementById('boarding-response');
+      const submitBtn   = document.getElementById('submit-btn');
 
-  function escapeHtml(str) {
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
+      function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+      function notEmpty(v)     { return v.trim() !== ''; }
 
-  function validateField(fieldId, inputId, testFn) {
-    const field = document.getElementById(fieldId);
-    const input = document.getElementById(inputId);
-    if (!field || !input) return true;
-    const valid = testFn(input.value.trim());
-    field.classList.toggle('has-error', !valid);
-    input.classList.toggle('error', !valid);
-    return valid;
-  }
-
-  function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-  function notEmpty(v) { return v !== ''; }
-
-  document.getElementById('email').addEventListener('blur', () =>
-    validateField('field-email', 'email', isValidEmail));
-  document.getElementById('passenger-type').addEventListener('change', () =>
-    validateField('field-passenger-type', 'passenger-type', notEmpty));
-  document.getElementById('broken-tooling').addEventListener('blur', () =>
-    validateField('field-broken-tooling', 'broken-tooling', notEmpty));
-  document.getElementById('desired-gap').addEventListener('blur', () =>
-    validateField('field-desired-gap', 'desired-gap', notEmpty));
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const validEmail       = validateField('field-email',          'email',          isValidEmail);
-    const validPassType    = validateField('field-passenger-type', 'passenger-type', notEmpty);
-    const validBroken      = validateField('field-broken-tooling', 'broken-tooling', notEmpty);
-    const validGap         = validateField('field-desired-gap',    'desired-gap',    notEmpty);
-    const agreed           = document.getElementById('beta-ack').checked;
-
-    if (!validEmail || !validPassType || !validBroken || !validGap || !agreed) return;
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = '>_ SENDING…';
-
-    const payload = {
-      name:           document.getElementById('name').value.trim(),
-      email:          document.getElementById('email').value.trim(),
-      passenger_type: document.getElementById('passenger-type').value,
-      broken_tooling: document.getElementById('broken-tooling').value.trim(),
-      desired_gap:    document.getElementById('desired-gap').value.trim(),
-      notes:          document.getElementById('notes').value.trim(),
-      beta_ack:       true
-    };
-
-    try {
-      const res = await fetch('/.netlify/functions/boarding', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      const html = await res.text();
-
-      form.style.display = 'none';
-      responsePanel.style.display = 'block';
-      responsePanel.classList.remove('error-response');
-
-      if (!res.ok) {
-        responsePanel.classList.add('error-response');
+      function validateField(fieldId, inputId, testFn) {
+        const field = document.getElementById(fieldId);
+        const input = document.getElementById(inputId);
+        if (!field || !input) return true;
+        const valid = testFn(input.value.trim());
+        field.classList.toggle('has-error', !valid);
+        input.classList.toggle('error', !valid);
+        return valid;
       }
 
-      responsePanel.innerHTML = html;
+      document.getElementById('email').addEventListener('blur', () =>
+        validateField('field-email', 'email', isValidEmail));
+      document.getElementById('passenger-type').addEventListener('change', () =>
+        validateField('field-passenger-type', 'passenger-type', notEmpty));
+      document.getElementById('career-stage').addEventListener('blur', () =>
+        validateField('field-career-stage', 'career-stage', notEmpty));
+      document.getElementById('desired-gap').addEventListener('blur', () =>
+        validateField('field-desired-gap', 'desired-gap', notEmpty));
 
-    } catch (err) {
-      submitBtn.disabled = false;
-      submitBtn.textContent = '>_ REQUEST BOARDING PASS';
-      responsePanel.style.display = 'block';
-      responsePanel.classList.add('error-response');
-      responsePanel.innerHTML = '<h1>Connection error</h1><p>Could not reach the boarding system. Please try again or email <strong>support@thispagedoesnotexist12345.com</strong></p>';
-    }
-  });
-</script>
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const validEmail    = validateField('field-email',          'email',          isValidEmail);
+        const validPassType = validateField('field-passenger-type', 'passenger-type', notEmpty);
+        const validCareer   = validateField('field-career-stage',   'career-stage',   notEmpty);
+        const validGap      = validateField('field-desired-gap',    'desired-gap',    notEmpty);
+        const agreed        = document.getElementById('beta-ack').checked;
+
+        if (!validEmail || !validPassType || !validCareer || !validGap || !agreed) return;
+
+        submitBtn.disabled    = true;
+        submitBtn.textContent = '⏳ Sending…';
+
+        const payload = {
+          name:           document.getElementById('name').value.trim(),
+          email:          document.getElementById('email').value.trim(),
+          passenger_type: document.getElementById('passenger-type').value,
+          broken_tooling: document.getElementById('career-stage').value.trim(),
+          desired_gap:    document.getElementById('desired-gap').value.trim(),
+          notes:          document.getElementById('notes').value.trim(),
+          beta_ack:       true
+        };
+
+        try {
+          const res  = await fetch('/.netlify/functions/boarding', {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify(payload)
+          });
+
+          const html = await res.text();
+          form.style.display = 'none';
+          responsePanel.style.display = 'block';
+          responsePanel.classList.remove('error-response');
+          if (!res.ok) responsePanel.classList.add('error-response');
+          responsePanel.innerHTML = html;
+
+          // Track puzzle completion on successful boarding
+          if (res.ok) {
+            if (typeof umami !== 'undefined') { umami.track('Boarding Manifest Submitted'); }
+          }
+        } catch (err) {
+          submitBtn.disabled    = false;
+          submitBtn.textContent = '✈️ Request Founding Seat';
+          responsePanel.style.display = 'block';
+          responsePanel.classList.add('error-response');
+          responsePanel.innerHTML = '<h1>Connection error</h1><p>Could not reach the boarding system. Please try again or email <strong>support@thispagedoesnotexist12345.com</strong></p>';
+        }
+      });
+    })();
+
+    // ── Puzzle tracker — mirrors .com path-tracking mechanic ────────────
+    (function () {
+      const pathDiamonds = {
+        com:     document.getElementById('diamond-com'),
+        studio:  document.getElementById('diamond-studio'),
+        signal:  document.getElementById('diamond-signal'),
+        systems: document.getElementById('diamond-systems')
+      };
+
+      const PATHS = ['com', 'studio', 'signal', 'systems'];
+
+      function updatePuzzleUI() {
+        const chosen = JSON.parse(localStorage.getItem('me-paths-chosen') || '[]');
+        PATHS.forEach(function (path) {
+          if (chosen.includes(path) && pathDiamonds[path]) {
+            pathDiamonds[path].classList.add('lit');
+          }
+        });
+        // All 4 paths explored — subtle reward: glow the submit button
+        if (PATHS.every(p => chosen.includes(p))) {
+          const btn = document.getElementById('submit-btn');
+          if (btn) {
+            btn.style.boxShadow = '0 0 24px rgba(168, 196, 0, 0.45)';
+            btn.style.borderColor = 'rgba(168, 196, 0, 0.9)';
+          }
+          if (typeof umami !== 'undefined') { umami.track('Puzzle Unlocked — .me'); }
+        }
+      }
+
+      document.querySelectorAll('.btn-row .btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const path = btn.dataset.path;
+          if (!path) return;
+          const chosen = JSON.parse(localStorage.getItem('me-paths-chosen') || '[]');
+          if (!chosen.includes(path)) {
+            chosen.push(path);
+            localStorage.setItem('me-paths-chosen', JSON.stringify(chosen));
+          }
+          if (pathDiamonds[path]) pathDiamonds[path].classList.add('lit');
+          // Check if all paths now explored
+          if (PATHS.every(p => chosen.includes(p))) {
+            const btn2 = document.getElementById('submit-btn');
+            if (btn2) {
+              btn2.style.boxShadow = '0 0 24px rgba(168, 196, 0, 0.45)';
+              btn2.style.borderColor = 'rgba(168, 196, 0, 0.9)';
+            }
+            if (typeof umami !== 'undefined') { umami.track('Puzzle Unlocked — .me'); }
+          }
+        });
+      });
+
+      // Also track .path hover clicks in the status section
+      document.querySelectorAll('.status-text .path').forEach(function (el) {
+        el.addEventListener('click', function () {
+          const path = el.dataset.path;
+          if (!path) return;
+          const chosen = JSON.parse(localStorage.getItem('me-paths-chosen') || '[]');
+          if (!chosen.includes(path)) {
+            chosen.push(path);
+            localStorage.setItem('me-paths-chosen', JSON.stringify(chosen));
+          }
+          if (pathDiamonds[path]) pathDiamonds[path].classList.add('lit');
+        });
+      });
+
+      updatePuzzleUI();
+    })();
+
+    // ── Black Glass always active ────────────────────────────────────────
+    (function () {
+      document.getElementById('theme-status').textContent = 'Black Glass Theme Active';
+    })();
+
+    // ── St. Patrick's Day theme (March 17 only) ──────────────────────────
+    (function () {
+      const now = new Date();
+      if (now.getMonth() === 2 && now.getDate() === 17) {
+        document.body.classList.add('st-patricks');
+        document.getElementById('theme-status').textContent = 'St. Patrick\'s Day Theme Active';
+        const shamrock = document.querySelector('.st-patricks-accent');
+        if (shamrock) shamrock.style.display = 'inline';
+      }
+    })();
+  </script>
+
+  <!-- ── Canvas hero — flight-path particle animation (matched to .com) ── -->
+  <script>
+    (function () {
+      var canvas = document.getElementById('hero-canvas');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var raf;
+      var particles = [];
+      var PARTICLE_COUNT = 55;
+      // Match site accent: #A8C400 = rgb(168, 196, 0)
+      var ACCENT = { r: 168, g: 196, b: 0 };
+
+      function resize() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      function randomBetween(a, b) { return a + Math.random() * (b - a); }
+
+      function createParticle() {
+        var angle = randomBetween(0, Math.PI * 2);
+        var speed = randomBetween(0.15, 0.55);
+        return {
+          x:     randomBetween(0, canvas.width),
+          y:     randomBetween(0, canvas.height),
+          vx:    Math.cos(angle) * speed,
+          vy:    Math.sin(angle) * speed,
+          size:  randomBetween(1, 2.5),
+          alpha: randomBetween(0.08, 0.35),
+          trail: []
+        };
+      }
+
+      function initParticles() {
+        particles = [];
+        for (var i = 0; i < PARTICLE_COUNT; i++) {
+          particles.push(createParticle());
+        }
+      }
+
+      function drawFrame() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.trail.push({ x: p.x, y: p.y });
+          if (p.trail.length > 18) p.trail.shift();
+          if (p.x < -10)                p.x = canvas.width  + 10;
+          if (p.x > canvas.width  + 10) p.x = -10;
+          if (p.y < -10)                p.y = canvas.height + 10;
+          if (p.y > canvas.height + 10) p.y = -10;
+          if (p.trail.length > 1) {
+            ctx.beginPath();
+            ctx.moveTo(p.trail[0].x, p.trail[0].y);
+            for (var t = 1; t < p.trail.length; t++) {
+              ctx.lineTo(p.trail[t].x, p.trail[t].y);
+            }
+            ctx.strokeStyle = 'rgba(' + ACCENT.r + ',' + ACCENT.g + ',' + ACCENT.b + ',' + (p.alpha * 0.4) + ')';
+            ctx.lineWidth = p.size * 0.5;
+            ctx.stroke();
+          }
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(' + ACCENT.r + ',' + ACCENT.g + ',' + ACCENT.b + ',' + p.alpha + ')';
+          ctx.fill();
+        }
+        raf = requestAnimationFrame(drawFrame);
+      }
+
+      function start() {
+        resize();
+        initParticles();
+        canvas.style.opacity = '1';
+        drawFrame();
+      }
+
+      window.addEventListener('resize', function () { resize(); initParticles(); });
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) { cancelAnimationFrame(raf); } else { drawFrame(); }
+      });
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start);
+      } else {
+        start();
+      }
+    })();
+  </script>
+
 </body>
 </html>
