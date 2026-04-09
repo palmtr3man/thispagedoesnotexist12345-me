@@ -10,3 +10,7 @@
   from = "/boarding"
   to = "/.netlify/functions/boarding"
   status = 200
+
+# Install dependencies declared in netlify/functions/package.json
+[[plugins]]
+  package = "@netlify/plugin-functions-install-core"
