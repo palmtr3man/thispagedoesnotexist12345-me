@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TUJ Alpha Blocker Tracker</title>
+<style>
+  :root {
+    --bg: #0a0c10;
+    --surface: #111318;
+    --surface2: #181c24;
+    --border: #1e2330;
+    --accent: #4f8ef7;
+    --accent2: #7c5cfc;
+    --green: #22c55e;
+    --yellow: #f59e0b;
+    --red: #ef4444;
+    --orange: #f97316;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --critical: #ef4444;
+    --high: #f97316;
+    --ats: #a78bfa;
+    --done-bg: #0f2318;
+    --done-border: #166534;
+    --done-text: #86efac;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .topbar-left { display: flex; align-items: center; gap: 12px; }
+  .topbar-logo {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .topbar-sub { color: var(--muted); font-size: 12px; }
+  .readiness-badge {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    border: 1.5px solid;
+  }
+  .badge-blocked { background: #2d0a0a; border-color: var(--red); color: var(--red); }
+  .badge-progress { background: #1c1a08; border-color: var(--yellow); color: var(--yellow); }
+  .badge-ready   { background: #0a2010; border-color: var(--green); color: var(--green); }
+
+  /* ── MAIN LAYOUT ── */
+  .main { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+  /* ── SCORE CARDS ── */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .score-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .score-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .score-card.card-blockers::before { background: var(--accent); }
+  .score-card.card-critical::before { background: var(--red); }
+  .score-card.card-launch::before   { background: var(--green); }
+  .score-card.card-ats::before      { background: var(--ats); }
+  .score-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px; }
+  .score-value { font-size: 32px; font-weight: 800; line-height: 1; }
+  .score-sub   { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .score-card.card-blockers .score-value { color: var(--accent); }
+  .score-card.card-critical .score-value { color: var(--red); }
+  .score-card.card-launch   .score-value { color: var(--green); }
+  .score-card.card-ats      .score-value { font-size: 22px; }
+  .ats-open  { color: var(--yellow); }
+  .ats-clear { color: var(--green); }
+
+  /* ── TWO-COLUMN LAYOUT ── */
+  .two-col { display: grid; grid-template-columns: 1fr 340px; gap: 20px; margin-bottom: 24px; }
+
+  /* ── BLOCKER TABLE ── */
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .panel-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .panel-title { font-weight: 700; font-size: 15px; }
+  .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .filter-btn.f-critical.active { background: var(--critical); border-color: var(--critical); }
+  .filter-btn.f-high.active     { background: var(--high);     border-color: var(--high); }
+  .filter-btn.f-ats.active      { background: var(--ats);      border-color: var(--ats); }
+  .filter-btn.f-done.active     { background: var(--green);    border-color: var(--green); }
+
+  .blocker-list { padding: 8px 0; }
+  .blocker-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .blocker-item:last-child { border-bottom: none; }
+  .blocker-item:hover { background: var(--surface2); }
+  .blocker-item.done { background: var(--done-bg); }
+  .blocker-item.hidden { display: none; }
+
+  .blocker-check {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    font-size: 11px;
+  }
+  .blocker-item.done .blocker-check {
+    background: var(--green);
+    border-color: var(--green);
+    color: #fff;
+  }
+  .blocker-item:not(.done):hover .blocker-check { border-color: var(--accent); }
+
+  .blocker-body { flex: 1; min-width: 0; }
+  .blocker-id   { font-size: 11px; font-weight: 700; color: var(--muted); font-family: monospace; }
+  .blocker-name { font-weight: 600; font-size: 13px; margin: 2px 0; }
+  .blocker-item.done .blocker-name { text-decoration: line-through; color: var(--muted); }
+  .blocker-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .blocker-tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+  .tag {
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid;
+  }
+  .tag-critical { color: var(--critical); border-color: #7f1d1d; background: #2d0a0a; }
+  .tag-high     { color: var(--high);     border-color: #7c2d12; background: #1c0d06; }
+  .tag-ats      { color: var(--ats);      border-color: #4c1d95; background: #1a0f38; }
+  .tag-done     { color: var(--done-text); border-color: var(--done-border); background: var(--done-bg); }
+  .tag-repo     { color: var(--muted);    border-color: var(--border); background: transparent; font-family: monospace; }
+
+  /* ── SCORE BREAKDOWN ── */
+  .breakdown-panel { display: flex; flex-direction: column; gap: 16px; }
+
+  .rings-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .rings-title { font-weight: 700; font-size: 13px; margin-bottom: 16px; }
+  .rings-row { display: flex; justify-content: space-around; gap: 8px; }
+  .ring-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .ring-label { font-size: 11px; color: var(--muted); text-align: center; }
+  .ring-svg { position: relative; }
+  .ring-svg svg { transform: rotate(-90deg); }
+  .ring-pct {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: 800;
+    pointer-events: none;
+  }
+
+  .sub-bars-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .sub-bars-title { font-weight: 700; font-size: 13px; margin-bottom: 14px; }
+  .sub-bar-row { margin-bottom: 12px; }
+  .sub-bar-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .sub-bar-track { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .sub-bar-fill  { height: 100%; border-radius: 3px; transition: width 0.4s ease; }
+
+  /* ── ATS PANEL ── */
+  .ats-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .ats-panel-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .ats-panel-title  { font-weight: 700; font-size: 15px; }
+  .ats-gate-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    border: 1.5px solid;
+    transition: all 0.3s;
+  }
+  .ats-gate-open   { color: var(--yellow); border-color: #78350f; background: #1c1208; }
+  .ats-gate-closed { color: var(--green);  border-color: var(--done-border); background: var(--done-bg); }
+
+  .ats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .ats-col-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 10px; }
+  .ats-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 10px; }
+  .ats-dot  { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+  .dot-red    { background: var(--red); }
+  .dot-green  { background: var(--green); }
+  .dot-yellow { background: var(--yellow); }
+  .ats-item-text { font-size: 13px; color: var(--text); }
+  .ats-item-text span { color: var(--muted); font-size: 12px; display: block; margin-top: 2px; }
+
+  .ats-insight {
+    margin-top: 16px;
+    padding: 14px 16px;
+    background: #1a0f38;
+    border: 1px solid #4c1d95;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #c4b5fd;
+  }
+  .ats-insight strong { color: #a78bfa; }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    padding: 20px 0 32px;
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+  }
+
+  @media (max-width: 900px) {
+    .score-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col    { grid-template-columns: 1fr; }
+    .ats-grid   { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .score-grid { grid-template-columns: 1fr 1fr; }
+    .topbar { flex-direction: column; gap: 10px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-logo">✈ TUJ</div>
+    <div>
+      <div style="font-weight:700;font-size:15px;">Alpha Blocker Tracker</div>
+      <div class="topbar-sub">Alpha Flight 1 · Apr 12, 2026 · 5-seat cap</div>
+    </div>
+  </div>
+  <div class="readiness-badge badge-blocked" id="readinessBadge">🔴 Blocked</div>
+</div>
+
+<div class="main">
+
+  <!-- SCORE CARDS -->
+  <div class="score-grid">
+    <div class="score-card card-blockers">
+      <div class="score-label">Blockers Resolved</div>
+      <div class="score-value" id="scoreResolved">0</div>
+      <div class="score-sub" id="scoreResolvedSub">of 10 complete</div>
+    </div>
+    <div class="score-card card-critical">
+      <div class="score-label">Critical Open</div>
+      <div class="score-value" id="scoreCriticalOpen">4</div>
+      <div class="score-sub">gates remaining</div>
+    </div>
+    <div class="score-card card-launch">
+      <div class="score-label">Launch Score</div>
+      <div class="score-value" id="scoreLaunch">0%</div>
+      <div class="score-sub" id="scoreLaunchSub">0 / 14 weighted pts</div>
+    </div>
+    <div class="score-card card-ats">
+      <div class="score-label">ATS Alignment</div>
+      <div class="score-value ats-open" id="scoreAts">⚠ Open</div>
+      <div class="score-sub">BLOCKER-02 + BLOCKER-10</div>
+    </div>
+  </div>
+
+  <!-- TWO-COLUMN: BLOCKER LIST + BREAKDOWN -->
+  <div class="two-col">
+
+    <!-- BLOCKER LIST -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Launch Blockers</div>
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn f-critical" data-filter="critical">Critical</button>
+          <button class="filter-btn f-high" data-filter="high">High</button>
+          <button class="filter-btn f-ats" data-filter="ats">ATS</button>
+          <button class="filter-btn f-done" data-filter="done">Done</button>
+        </div>
+      </div>
+      <div class="blocker-list" id="blockerList"></div>
+    </div>
+
+    <!-- SCORE BREAKDOWN -->
+    <div class="breakdown-panel">
+      <!-- SVG RINGS -->
+      <div class="rings-wrap">
+        <div class="rings-title">Score Breakdown</div>
+        <div class="rings-row">
+          <div class="ring-item">
+            <div class="ring-svg" style="width:80px;height:80px;">
+              <svg width="80" height="80" viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="32" fill="none" stroke="#1e2330" stroke-width="8"/>
+                <circle id="ringOverall" cx="40" cy="40" r="32" fill="none" stroke="#4f8ef7" stroke-width="8"
+                  stroke-dasharray="201.06" stroke-dashoffset="201.06" stroke-linecap="round" style="transition:stroke-dashoffset 0.5s ease"/>
+              </svg>
+              <div class="ring-pct" id="ringOverallPct" style="color:#4f8ef7">0%</div>
+            </div>
+            <div class="ring-label">Overall</div>
+          </div>
+          <div class="ring-item">
+            <div class="ring-svg" style="width:80px;height:80px;">
+              <svg width="80" height="80" viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="32" fill="none" stroke="#1e2330" stroke-width="8"/>
+                <circle id="ringCritical" cx="40" cy="40" r="32" fill="none" stroke="#ef4444" stroke-width="8"
+                  stroke-dasharray="201.06" stroke-dashoffset="201.06" stroke-linecap="round" style="transition:stroke-dashoffset 0.5s ease"/>
+              </svg>
+              <div class="ring-pct" id="ringCriticalPct" style="color:#ef4444">0%</div>
+            </div>
+            <div class="ring-label">Critical</div>
+          </div>
+          <div class="ring-item">
+            <div class="ring-svg" style="width:80px;height:80px;">
+              <svg width="80" height="80" viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="32" fill="none" stroke="#1e2330" stroke-width="8"/>
+                <circle id="ringAts" cx="40" cy="40" r="32" fill="none" stroke="#a78bfa" stroke-width="8"
+                  stroke-dasharray="201.06" stroke-dashoffset="201.06" stroke-linecap="round" style="transition:stroke-dashoffset 0.5s ease"/>
+              </svg>
+              <div class="ring-pct" id="ringAtsPct" style="color:#a78bfa">0%</div>
+            </div>
+            <div class="ring-label">ATS Gate</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUB-BARS -->
+      <div class="sub-bars-wrap">
+        <div class="sub-bars-title">Weighted Math</div>
+        <div class="sub-bar-row">
+          <div class="sub-bar-label">
+            <span>Critical (2× weight)</span>
+            <span id="barCriticalVal">0 / 8 pts</span>
+          </div>
+          <div class="sub-bar-track"><div class="sub-bar-fill" id="barCritical" style="width:0%;background:#ef4444;"></div></div>
+        </div>
+        <div class="sub-bar-row">
+          <div class="sub-bar-label">
+            <span>High (1× weight)</span>
+            <span id="barHighVal">0 / 6 pts</span>
+          </div>
+          <div class="sub-bar-track"><div class="sub-bar-fill" id="barHigh" style="width:0%;background:#f97316;"></div></div>
+        </div>
+        <div class="sub-bar-row">
+          <div class="sub-bar-label">
+            <span>ATS Gate</span>
+            <span id="barAtsVal">0 / 2 pts</span>
+          </div>
+          <div class="sub-bar-track"><div class="sub-bar-fill" id="barAts" style="width:0%;background:#a78bfa;"></div></div>
+        </div>
+        <div class="sub-bar-row" style="margin-bottom:0">
+          <div class="sub-bar-label">
+            <span>Total Launch Score</span>
+            <span id="barTotalVal">0 / 14 pts</span>
+          </div>
+          <div class="sub-bar-track"><div class="sub-bar-fill" id="barTotal" style="width:0%;background:linear-gradient(90deg,#4f8ef7,#7c5cfc);"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATS ALIGNMENT PANEL -->
+  <div class="ats-panel">
+    <div class="ats-panel-header">
+      <div class="ats-panel-title">ATS Scoring Alignment</div>
+      <div class="ats-gate-badge ats-gate-open" id="atsGateBadge">⚠ ATS Gate Open</div>
+    </div>
+    <div class="ats-grid">
+      <div>
+        <div class="ats-col-title">Root Problems</div>
+        <div class="ats-item">
+          <div class="ats-dot dot-red"></div>
+          <div class="ats-item-text">Missing stopword filter
+            <span>Common words inflate keyword match counts, producing false-high ATS scores that mislead passengers during Alpha.</span>
+          </div>
+        </div>
+        <div class="ats-item">
+          <div class="ats-dot dot-red"></div>
+          <div class="ats-item-text">EEO boilerplate not stripped
+            <span>Legal/compliance boilerplate (EEO, AAP, ADA) is treated as job-relevant keywords, corrupting match signal.</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="ats-col-title">Required Fixes</div>
+        <div class="ats-item">
+          <div class="ats-dot dot-yellow"></div>
+          <div class="ats-item-text">Regex EEO boilerplate stripper
+            <span>BLOCKER-02 — <code style="font-size:11px;color:#a78bfa">filterMeaningfulJdTerms.ts</code> 8-step filter pipeline.</span>
+          </div>
+        </div>
+        <div class="ats-item">
+          <div class="ats-dot dot-yellow"></div>
+          <div class="ats-item-text">Percent validation in <code style="font-size:11px;color:#a78bfa">handleScoringResult</code>
+            <span>BLOCKER-10 — 5-rule percent gate; rejects outputs where scores don't sum correctly.</span>
+          </div>
+        </div>
+        <div class="ats-item">
+          <div class="ats-dot dot-yellow"></div>
+          <div class="ats-item-text">Score warning state surface
+            <span>Shows ⚠ ATS gate open instead of a clean score number if either blocker is still open.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ats-insight">
+      <strong>Co-dependency rule:</strong> BLOCKER-02 and BLOCKER-10 are co-dependent — stopword cleanup produces correct keyword scores, and the percent gate validates those scores are within bounds. <strong>Neither alone is sufficient.</strong> Both must ship together for any ATS-derived dashboard number to be trustworthy. Until both are marked Done, the ATS Alignment card will show ⚠ Open.
+    </div>
+  </div>
+
+  <div class="footer">
+    TUJ Alpha Blocker Tracker · Alpha Flight 1 · 5-seat cap · ALPHA_MODE=true · Apr 12, 2026
+  </div>
+</div>
+
+<script>
+const BLOCKERS = [
+  {
+    id: 'BLOCKER-01',
+    name: 'Info Modal — What is TUJ Explainer + Alpha Disclaimer',
+    desc: 'Overlay that explains TUJ and sets Alpha expectations. Required before any passenger sees the gate.',
+    priority: 'critical',
+    ats: false,
+    repo: 'thispagedoesnotexist12345',
+    done: true,
+    commit: 'ce28f07'
+  },
+  {
+    id: 'BLOCKER-02',
+    name: 'ATS Keyword Scorer — Stopword Filter & EEO Boilerplate Stripper',
+    desc: '8-step filter pipeline in filterMeaningfulJdTerms.ts. Removes stopwords and EEO boilerplate before keyword scoring.',
+    priority: 'critical',
+    ats: true,
+    repo: 'career-navigator',
+    done: true,
+    commit: 'fde84a3'
+  },
+  {
+    id: 'BLOCKER-03',
+    name: 'Admin Tower Approve/Deny Flow',
+    desc: 'Admin can approve or deny seat requests. Fires dual boarding email sequence on approval, denial email on deny.',
+    priority: 'critical',
+    ats: false,
+    repo: 'thispagedoesnotexist12345',
+    done: true,
+    commit: 'dbc6c2f'
+  },
+  {
+    id: 'BLOCKER-04',
+    name: 'Custom Supabase Waitlist Form',
+    desc: 'POST handler with HMAC age token validation and Supabase upsert. Requires SUPABASE_SERVICE_ROLE_KEY.',
+    priority: 'critical',
+    ats: false,
+    repo: 'thispagedoesnotexist12345',
+    done: true,
+    commit: '31da3b0'
+  },
+  {
+    id: 'BLOCKER-05',
+    name: 'Studio Readiness Checklist — Green Checks for Name/Email/Seat',
+    desc: 'Visual checklist in builder.jsx confirming passenger identity fields are populated before Studio is usable.',
+    priority: 'high',
+    ats: false,
+    repo: 'career-navigator',
+    done: true,
+    commit: null
+  },
+  {
+    id: 'BLOCKER-06',
+    name: 'Studio Stateful Routing — Swap CTA Between Request a Seat and Run Fit Check',
+    desc: 'Landing page CTA swaps based on gate state: Request a Seat (OPEN) ↔ Run Fit Check (HOLD/CLOSED).',
+    priority: 'high',
+    ats: false,
+    repo: 'thispagedoesnotexist12345',
+    done: true,
+    commit: 'd63aa28'
+  },
+  {
+    id: 'BLOCKER-07',
+    name: 'Passenger Door — Newsletter Landing + TUJ Seat Gate + ResumeFitCheck Alignment',
+    desc: 'Gate check function confirming seat status before granting access to the SaaS app.',
+    priority: 'high',
+    ats: false,
+    repo: 'thispagedoesnotexist12345',
+    done: true,
+    commit: null
+  },
+  {
+    id: 'BLOCKER-08',
+    name: 'Notion ↔ SaaS Alignment Loop — Sync + Drift Detection + Repair',
+    desc: 'Real-time webhook (Supabase→Notion) + every-6h cron drift scan. Echo-loop prevention, safe auto-repair, DriftReport writer.',
+    priority: 'high',
+    ats: false,
+    repo: 'career-navigator',
+    done: true,
+    commit: 'c6cb59d'
+  },
+  {
+    id: 'BLOCKER-09',
+    name: 'F148-B handleSeatOpened — SeatRequest + Cohort open_count + Dual Boarding Sequence',
+    desc: 'Wires seat_requests INSERT/UPDATE to cohort open_count increment and fires dual boarding email sequence.',
+    priority: 'high',
+    ats: false,
+    repo: 'thispagedoesnotexist12345',
+    done: true,
+    commit: null
+  },
+  {
+    id: 'BLOCKER-10',
+    name: 'Percent Review Gate — Validate All Percentages After Analysis',
+    desc: '5-rule percent validation gate in percentReviewGate.ts. Wired after mergeResults() in scoringEngine.jsx.',
+    priority: 'high',
+    ats: true,
+    repo: 'career-navigator',
+    done: true,
+    commit: '7b1e97e'
+  }
+];
+
+let currentFilter = 'all';
+
+function renderBlockers() {
+  const list = document.getElementById('blockerList');
+  list.innerHTML = '';
+  BLOCKERS.forEach((b, i) => {
+    const item = document.createElement('div');
+    item.className = 'blocker-item' + (b.done ? ' done' : '');
+    item.dataset.index = i;
+
+    // filter visibility
+    const show = currentFilter === 'all'
+      || (currentFilter === 'critical' && b.priority === 'critical')
+      || (currentFilter === 'high'     && b.priority === 'high')
+      || (currentFilter === 'ats'      && b.ats)
+      || (currentFilter === 'done'     && b.done);
+    if (!show) item.classList.add('hidden');
+
+    const tags = [];
+    if (b.priority === 'critical') tags.push(`<span class="tag tag-critical">Critical</span>`);
+    if (b.priority === 'high')     tags.push(`<span class="tag tag-high">High</span>`);
+    if (b.ats)                     tags.push(`<span class="tag tag-ats">ATS</span>`);
+    if (b.done)                    tags.push(`<span class="tag tag-done">✓ Shipped</span>`);
+    tags.push(`<span class="tag tag-repo">${b.repo}</span>`);
+    if (b.commit) tags.push(`<span class="tag tag-repo">${b.commit}</span>`);
+
+    item.innerHTML = `
+      <div class="blocker-check">${b.done ? '✓' : ''}</div>
+      <div class="blocker-body">
+        <div class="blocker-id">${b.id}</div>
+        <div class="blocker-name">${b.name}</div>
+        <div class="blocker-desc">${b.desc}</div>
+        <div class="blocker-tags">${tags.join('')}</div>
+      </div>`;
+
+    item.addEventListener('click', () => {
+      BLOCKERS[i].done = !BLOCKERS[i].done;
+      renderBlockers();
+      updateScores();
+    });
+
+    list.appendChild(item);
+  });
+}
+
+function updateScores() {
+  const total = BLOCKERS.length;
+  const done  = BLOCKERS.filter(b => b.done).length;
+  const criticalTotal = BLOCKERS.filter(b => b.priority === 'critical').length;
+  const criticalDone  = BLOCKERS.filter(b => b.priority === 'critical' && b.done).length;
+  const highTotal = BLOCKERS.filter(b => b.priority === 'high').length;
+  const highDone  = BLOCKERS.filter(b => b.priority === 'high' && b.done).length;
+  const atsDone   = BLOCKERS.filter(b => b.ats && b.done).length;
+  const atsTotal  = BLOCKERS.filter(b => b.ats).length;
+
+  // Weighted score: critical = 2pts each (4 × 2 = 8), high = 1pt each (6 × 1 = 6), total = 14
+  const weightedEarned = criticalDone * 2 + highDone * 1;
+  const weightedTotal  = criticalTotal * 2 + highTotal * 1;
+  const launchPct = Math.round((weightedEarned / weightedTotal) * 100);
+  const overallPct = Math.round((done / total) * 100);
+  const criticalPct = Math.round((criticalDone / criticalTotal) * 100);
+  const atsPct = Math.round((atsDone / atsTotal) * 100);
+
+  // Score cards
+  document.getElementById('scoreResolved').textContent = done;
+  document.getElementById('scoreResolvedSub').textContent = `of ${total} complete`;
+  document.getElementById('scoreCriticalOpen').textContent = criticalTotal - criticalDone;
+  document.getElementById('scoreLaunch').textContent = launchPct + '%';
+  document.getElementById('scoreLaunchSub').textContent = `${weightedEarned} / ${weightedTotal} weighted pts`;
+
+  const atsEl = document.getElementById('scoreAts');
+  if (atsDone === atsTotal) {
+    atsEl.textContent = '✓ Clear';
+    atsEl.className = 'score-value ats-clear';
+  } else {
+    atsEl.textContent = '⚠ Open';
+    atsEl.className = 'score-value ats-open';
+  }
+
+  // Rings
+  const circ = 201.06;
+  setRing('ringOverall',   overallPct,   circ);
+  setRing('ringCritical',  criticalPct,  circ);
+  setRing('ringAts',       atsPct,       circ);
+  document.getElementById('ringOverallPct').textContent  = overallPct + '%';
+  document.getElementById('ringCriticalPct').textContent = criticalPct + '%';
+  document.getElementById('ringAtsPct').textContent      = atsPct + '%';
+
+  // Sub-bars
+  const critPts = criticalDone * 2;
+  const highPts = highDone * 1;
+  const atsPts  = atsDone;
+  document.getElementById('barCriticalVal').textContent = `${critPts} / 8 pts`;
+  document.getElementById('barHighVal').textContent     = `${highPts} / 6 pts`;
+  document.getElementById('barAtsVal').textContent      = `${atsPts} / 2 pts`;
+  document.getElementById('barTotalVal').textContent    = `${weightedEarned} / ${weightedTotal} pts`;
+  document.getElementById('barCritical').style.width = (critPts / 8 * 100) + '%';
+  document.getElementById('barHigh').style.width     = (highPts / 6 * 100) + '%';
+  document.getElementById('barAts').style.width      = (atsPts / atsTotal * 100) + '%';
+  document.getElementById('barTotal').style.width    = launchPct + '%';
+
+  // ATS gate badge
+  const atsGate = document.getElementById('atsGateBadge');
+  if (atsDone === atsTotal) {
+    atsGate.textContent = '✓ ATS Gate Clear';
+    atsGate.className = 'ats-gate-badge ats-gate-closed';
+  } else {
+    atsGate.textContent = '⚠ ATS Gate Open';
+    atsGate.className = 'ats-gate-badge ats-gate-open';
+  }
+
+  // Readiness badge
+  const badge = document.getElementById('readinessBadge');
+  if (done === total) {
+    badge.textContent = '🚀 Ready to Launch';
+    badge.className = 'readiness-badge badge-ready';
+  } else if (done === 0) {
+    badge.textContent = '🔴 Blocked';
+    badge.className = 'readiness-badge badge-blocked';
+  } else {
+    badge.textContent = `${launchPct}% Ready`;
+    badge.className = 'readiness-badge badge-progress';
+  }
+}
+
+function setRing(id, pct, circ) {
+  const el = document.getElementById(id);
+  const offset = circ - (circ * pct / 100);
+  el.style.strokeDashoffset = offset;
+}
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderBlockers();
+  });
+});
+
+// Init
+renderBlockers();
+updateScores();
+</script>
+</body>
+</html>
